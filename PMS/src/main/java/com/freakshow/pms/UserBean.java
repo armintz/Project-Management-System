@@ -31,6 +31,13 @@ public class UserBean implements Serializable {
     /** The is employee number. */
     private int employeeNum; 
     
+    public void UserName(String userName, String password, String firstName, String lastName, int employeeNum){
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeNum = employeeNum;            
+    }
     /**
      * Gets the user name.
      *
@@ -115,8 +122,6 @@ public class UserBean implements Serializable {
     public void setEmployeeNum(int employeeNum) {
         this.employeeNum = employeeNum;
     }
-    public String verifyUser(){
-        return "login";
-    }
+
 }
 
