@@ -1,0 +1,41 @@
+#heading {
+   padding: 20px;
+   height: 40px;
+   margin-bottom: 10px;
+   background: #a8e630;
+   border: 1px outset green;
+}
+
+#footer {
+   padding: 20px;
+   height: 30px;
+   margin-top: 430px;
+   background: #a8e630;
+   border: 1px outset green;
+   bottom: 140px;
+}
+
+#content {
+   padding: 5px;
+   border: thin outset lightGray;
+   background: #fefeef;
+   position: absolute;
+   right: 8px;
+   height: 410px;
+   left: 10px; 
+   top: 95px;
+}
+
+.header {
+   font-size: 1.4em;
+   font-style: italic;
+   font-family: Palatino;
+   text-align: left;
+}
+
+.footer {
+   font-size: .8em;
+   font-family: Palatino;
+   text-align: right;
+}
+

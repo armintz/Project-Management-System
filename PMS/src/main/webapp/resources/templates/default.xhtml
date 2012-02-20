@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+
+   <h:head>
+      <title><ui:insert name="windowTitle"/></title>
+      <h:outputStylesheet library="css" name="css/styles.css"/>
+   </h:head>
+   
+   <h:body>         
+      <div id="heading">
+         <ui:insert name="heading">
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:insert>
+      </div>
+      
+      <div id="content">
+         <ui:insert name="content"/>
+      </div>
+      <ui:debug/>
+   
+ 	  <div id="footer">
+         <ui:insert name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:insert>
+      </div>
+
+   </h:body>   
+</html>
+
+<!-- 
+<h:outputStylesheet name="css/screen.css" />
+<ui:insert name="content">
+   [Template content will be inserted here]
+</ui:insert>
+               
+               
+<div id="footer">
+ <h:graphicImage value="/resources/gfx/logo.png" alt="Weld logo" />
+   <p>
+     This project was generated from a Maven archetype from
+     JBoss.<br />
+   </p>
+</div>
+
+ -->             
