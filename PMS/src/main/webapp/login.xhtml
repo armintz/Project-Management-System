@@ -11,8 +11,9 @@
          </ui:define>
 
          <ui:define name="content">
+            <p></p>
             <h:form>
-               <h:panelGrid columns="2">
+               <h:panelGrid columns="2" style="display:block; text-align:center">
                  #{msgs.name}
                   <h:inputText id="name" value="#{user.userName}"/>
                   #{msgs.pass}
@@ -21,8 +22,10 @@
                <p>
                   <h:commandButton value="#{msgs.btnLogin}"
                                    action="#{user.verifyUser}"/>
-               </p>
+               </p>             
             </h:form>
+            <p></p>
+            <p></p>
          </ui:define>
 
 		<ui:define name="footer">
