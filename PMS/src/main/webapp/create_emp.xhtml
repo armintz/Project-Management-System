@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+            <p></p>
+            <h:form>
+               <h:panelGrid columns="2" style="display:block; text-align:center">
+                 #{msgs.emp_fname}
+                  <h:inputText id="fname" value="#{user.firstName}"/>
+                 #{msgs.emp_lname}
+                  <h:inputText id="lname" value="#{user.lastName}"/>
+                 #{msgs.email}
+                  <h:inputText id="email" value="#{user.email}"/>
+                 #{msgs.phone}
+                  <h:inputText id="phone" value="#{user.phone}"/>
+                 #{msgs.emp_startdate}
+                  <h:inputText id="emp_startdate" value="#{user.startDate}"/>
+                 #{msgs.ft_indicator}
+                  <h:inputText id="name" value="#{user.ft_indicator}"/>
+                 #{msgs.supervisor_id}
+                  <h:inputText id="name" value="#{user.supervisor_id}"/>
+                 #{msgs.ts_approver_id}
+                  <h:inputText id="name" value="#{user.ts_approver_id}"/>
+                 #{msgs.user_id}
+                  <h:inputText id="name" value="#{user.userName}"/>
+                 #{msgs.pass}
+                  <h:inputText id="password" value="#{user.password}"/>
+               </h:panelGrid>
+               <p>
+                  <h:commandButton value="#{msgs.create}"
+                                   action="#{manageUser.verifyUser()}"/>
+               </p>             
+            </h:form>
+            <p></p>
+            <p></p>
+         </ui:define>
+
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>
