@@ -2,48 +2,54 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
    <head><title>Software Management System</title></head>
    <body>
       <ui:composition template="/resources/templates/default.xhtml">
-         <ui:define name="heading">
+         <ui:define name="heading">       
             <ui:include src="/resources/sections/header.xhtml"/>
          </ui:define>
 
          <ui:define name="content">
-            <p></p>
             <h:form>
-               <h:panelGrid columns="2" style="display:block; text-align:center">
-                 #{msgs.emp_fname}
-                  <h:inputText id="fname" value="#{user.firstName}"/>
-                 #{msgs.emp_lname}
-                  <h:inputText id="lname" value="#{user.lastName}"/>
-                 #{msgs.email}
-                  <h:inputText id="email" value="#{user.email}"/>
-                 #{msgs.phone}
-                  <h:inputText id="phone" value="#{user.phone}"/>
-                 #{msgs.emp_startdate}
-                  <h:inputText id="emp_startdate" value="#{user.startDate}"/>
-                 #{msgs.ft_indicator}
-                  <h:inputText id="name" value="#{user.ft_indicator}"/>
-                 #{msgs.supervisor_id}
-                  <h:inputText id="name" value="#{user.supervisor_id}"/>
-                 #{msgs.ts_approver_id}
-                  <h:inputText id="name" value="#{user.ts_approver_id}"/>
-                 #{msgs.user_id}
-                  <h:inputText id="name" value="#{user.userName}"/>
-                 #{msgs.pass}
-                  <h:inputText id="password" value="#{user.password}"/>
-               </h:panelGrid>
-               <p>
-                  <h:commandButton value="#{msgs.create}"
-                                   action="#{manageUser.verifyUser()}"/>
-               </p>             
+                <p:panel header="Create an Employee">            
+	               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+	                 #{msgs.emp_ID}
+	                  <p:inputText id="empID" value="#{manageUser.user.emp_ID}"/>
+	                 #{msgs.pass}
+	                  <p:password id="pass" value="#{manageUser.user.emp_pass}" feedback="true" />
+	               	 #{msgs.emp_fname}   
+	                  <p:inputText id="fName" value="#{manageUser.user.first_name}"/>	                 
+	                 #{msgs.emp_lname}
+	                  <p:inputText id="lName" value="#{manageUser.user.last_name}"/>
+	                 #{msgs.emp_startdate}
+	                  <p:calendar id="empStartDate" value="#{manageUser.user.emp_start_date}"  showOn="button" />  
+	                 #{msgs.ft_indicator}
+	                  <p:selectOneMenu id="ft_pt" value="#{manageUser.user.ft_pt}">  
+				            <f:selectItem itemLabel="Full Time" itemValue="Full Time" />  
+				            <f:selectItem itemLabel="Part Time" itemValue="Part Time" />  
+				      </p:selectOneMenu> 
+	                 #{msgs.supervisor_id}
+	                  <p:inputText id="supID" value="#{manageUser.user.supervisor_id}"/>
+	                 #{msgs.ts_approver_id}
+	                  <p:inputText id="apprvrID" value="#{manageUser.user.ts_approver_id}"/>
+	                   <p:commandButton value="#{msgs.btnCreate}"
+	                                   action="#{manageUser.createUser()}"/>
+	               </p:panelGrid>
+   		 		</p:panel>    			                          
             </h:form>
-            <p></p>
-            <p></p>
          </ui:define>
-
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
 		<ui:define name="footer">
             <ui:include src="/resources/sections/footer.xhtml"/>
          </ui:define>

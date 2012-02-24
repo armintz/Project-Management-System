@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+
+         <ui:define name="content">
+         
+   
+			<p:layout fullPage="true">  
+			  
+			    <p:layoutUnit position="north" size="220">  
+            <h:graphicImage id="header1" alt="header" url="/resources/gfx/header.png">
+			</h:graphicImage> 		    
+			    </p:layoutUnit>  
+			  
+			    <p:layoutUnit position="south" size="130">  
+            <h:graphicImage id="footer1" alt="footer" url="/resources/gfx/footer.png">
+			</h:graphicImage> 
+			    </p:layoutUnit>  
+			  
+			    <p:layoutUnit position="west" size="200" header="Dashboard" resizable="true" closable="true" collapsible="true">  
+			        <h:outputText value="menu goes here" />   
+			    </p:layoutUnit>  
+			  
+
+			  
+			    <p:layoutUnit position="center">  
+			        <h:form>  
+	                <p:panel id="login1" header="Login" style="margin-bottom:10px;">  	            
+		               <h:panelGrid columns="2" style="display:block; text-align:center">
+		                  #{msgs.emp_ID}
+		                  <p:inputText id="empID1" value="#{user.emp_ID}"/>
+		                  #{msgs.pass}
+		                  <p:password id="password1" value="#{user.emp_pass}"/>         
+		                  <p:commandButton value="#{msgs.btnLogin}"
+		                                   action="#{manageUser.verifyUser()}"/>
+
+		               </h:panelGrid>
+		               
+   				 </p:panel>
+			        </h:form>  
+			    </p:layoutUnit>  
+			  
+			</p:layout>  			    
+         </ui:define>
+
+      </ui:composition>
+   </body>
+</html>
+
+
+
+
+
+
+

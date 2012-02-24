@@ -6,7 +6,7 @@
 
    <h:head>
       <title><ui:insert name="windowTitle"/></title>
-      <h:outputStylesheet library="css" name="css/styles.css"/>
+      <h:outputStylesheet library="css" name="styles.css"/>
    </h:head>
    
    <h:body>         
@@ -16,33 +16,22 @@
          </ui:insert>
       </div>
       
+      <div id="left">
+         <ui:insert name="left"/>
+         <ui:include src="/resources/sections/left.xhtml"/>       
+      </div>
+         
       <div id="content">
          <ui:insert name="content"/>
       </div>
-      <ui:debug/>
    
  	  <div id="footer">
          <ui:insert name="footer">
             <ui:include src="/resources/sections/footer.xhtml"/>
          </ui:insert>
       </div>
+      <ui:debug/>
 
    </h:body>   
 </html>
-
-<!-- 
-<h:outputStylesheet name="css/screen.css" />
-<ui:insert name="content">
-   [Template content will be inserted here]
-</ui:insert>
-               
-               
-<div id="footer">
- <h:graphicImage value="/resources/gfx/logo.png" alt="Weld logo" />
-   <p>
-     This project was generated from a Maven archetype from
-     JBoss.<br />
-   </p>
-</div>
-
- -->             
+            

@@ -2,7 +2,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
    <head><title>Software Management System</title></head>
    <body>
       <ui:composition template="/resources/templates/default.xhtml">
@@ -11,21 +13,53 @@
          </ui:define>
 
          <ui:define name="content">
-            <p></p>
-            <h:form>
-               <h:panelGrid columns="2" style="display:block; text-align:center">
-                 #{msgs.name}
-                  <h:inputText id="name" value="#{user.userName}"/>
-                  #{msgs.pass}
-                  <h:inputSecret id="password" value="#{user.password}"/>
-               </h:panelGrid>
-               <p>
-                  <h:commandButton value="#{msgs.btnLogin}"
-                                   action="#{manageUser.verifyUser()}"/>
-               </p>             
-            </h:form>
-            <p></p>
-            <p></p>
+         
+		<p:layout style="min-width:500px;min-height:200px;" id="layout">  
+		    <p:layoutUnit position="west" resizable="true" size="200" minSize="40" maxSize="200">  
+		         <h:form>  
+		         
+		        <p:messages id="messages1" showDetail="true" autoUpdate="true"/>  
+				<p:commandButton id="infoButton" value="Info" actionListener="#{manageUser.addInfo}"/>  
+				  
+				  
+				<p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+					<h:outputText value="You have been added to a new Work Package" style="color:#FFCC00;font-size:36px;" />  
+				</p:notificationBar>  
+				  
+				<p:commandButton value="Show" onclick="bar.show()" type="button" />  
+				<p:commandButton value="Hide" onclick="bar.hide()" type="button" /> 	         
+						         
+		         
+			    <p:growl id="messages"/>  
+			      
+			    <p:menuButton value="Timesheet">  
+			        <p:menuitem value="Create" update="messages" actionListener="#{manageUser.save}" icon="ui-icon-disk"/>  
+			        <p:menuitem value="Edit" update="messages" actionListener="#{manageUser.update}" icon="ui-icon-arrowrefresh-1-w"/>  
+			        <p:menuitem value="View" icon="ui-icon-close" actionListener="#{manageUser.delete}" ajax="false"/>  
+			        <p:separator />  
+			        <p:menuitem value="Logout" url="#" icon="ui-icon-extlink"/>  
+			    </p:menuButton>  
+			</h:form>  
+	    	</p:layoutUnit>  
+ 
+	    <p:layoutUnit position="center">  
+	            <h:form>
+	                <p:panel id="login" header="Login" style="margin-bottom:10px;">  	            
+		               <h:panelGrid columns="2" style="display:block; text-align:center">
+		                  #{msgs.emp_ID}
+		                  <p:inputText id="empID" value="#{user.emp_ID}"/>
+		                  #{msgs.pass}
+		                  <p:password id="password" value="#{user.emp_pass}"/>         
+		                  <p:commandButton value="#{msgs.btnLogin}"
+		                                   action="#{manageUser.verifyUser()}"/>
+
+		               </h:panelGrid>
+		               
+   				 </p:panel>
+                
+	            </h:form>	
+			    </p:layoutUnit>  
+			</p:layout>         
          </ui:define>
 
 		<ui:define name="footer">
