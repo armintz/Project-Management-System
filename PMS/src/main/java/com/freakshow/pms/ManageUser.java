@@ -21,28 +21,34 @@ public class ManageUser implements Serializable {
     @PersistenceContext
     protected EntityManager em;
     Employee emp = new Employee();
-    
-    public Employee getUser() {
+
+    public Employee getEmp() {
         return emp;
     }
 
-    public void setUser(Employee user) {
-        this.emp = user;
+    public void setEmp(Employee emp) {
+        this.emp = emp;
     }
-   
+
     public String verifyUser(){
-        /*
-        Query query = em.createQuery("from " +
-                "Employee e where userName=admin");
-        ub = (UserBean)query.getSingleResult();
-        */
-        return "login";
+        try{            
+            Employee temp_emp = em.find(Employee.class, emp.getEmp_ID());
+            if(temp_emp.getEmp_pass().equals(emp.getEmp_pass())){
+                emp = temp_emp;
+                return "employee";
+            }
+        }
+        catch(Exception ex){
+            System.out.println("No employee in record.");
+        }
+        return "create_emp";
     }   
     
     public void createUser() {
-
         em.persist(emp);
+        
     }
+    
     public void save(ActionEvent actionEvent) {  
         addMessage("Data saved");  
     }  
@@ -60,6 +66,6 @@ public class ManageUser implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);  
     }    
     public void addInfo(ActionEvent actionEvent) {  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Welcome Employee", "You have been added to a new project!"));  
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Welcome Employee", "Employee Successfully Created!"));  
     } 
 }

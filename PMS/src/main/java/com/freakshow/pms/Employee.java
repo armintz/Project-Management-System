@@ -24,6 +24,12 @@ public class Employee implements Serializable {
     private String supervisor_id;
     private String ts_approver_id;
     
+    public Employee(){
+        
+    }
+    public Employee (int emp_ID){
+        emp_ID = this.emp_ID;
+    }
     public int getEmp_ID() {
         return emp_ID;
     }

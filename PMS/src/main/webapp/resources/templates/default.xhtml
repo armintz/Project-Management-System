@@ -10,19 +10,22 @@
    </h:head>
    
    <h:body>         
-      <div id="heading">
-         <ui:insert name="heading">
+      <div id="header">
+         <ui:insert name="header">
             <ui:include src="/resources/sections/header.xhtml"/>
          </ui:insert>
       </div>
       
       <div id="left">
-         <ui:insert name="left"/>
-         <ui:include src="/resources/sections/left.xhtml"/>       
+         <ui:insert name="left">
+         	<ui:include src="/resources/sections/left.xhtml"/>  
+         </ui:insert>     
       </div>
          
       <div id="content">
-         <ui:insert name="content"/>
+         <ui:insert name="content">
+         	<ui:include src="/resources/sections/content.xhtml"/>  
+         </ui:insert>    
       </div>
    
  	  <div id="footer">
@@ -31,7 +34,6 @@
          </ui:insert>
       </div>
       <ui:debug/>
-
    </h:body>   
 </html>
             

@@ -1,0 +1,39 @@
+body{ 
+font-size:14px; 
+margin:0; 
+padding:0;
+font-family: Verdana;
+color: #69685D;
+}
+
+#header{ 
+background-image:url("#{resource['gfx:header.png']}");
+background-repeat:no-repeat;
+background-position:center; 
+height:226px;
+}
+
+#left{ 
+float:left;
+width:200px;
+min-height:490px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+height:500px; /* for IE5.x and IE6 */
+padding: 20px;
+}
+
+#content { 
+padding: 20px;
+margin-left:200px;
+min-height:490px; /* for modern browsers */
+height:auto !important; /* for modern browsers */
+height:500px; /* for IE5.x and IE6 */
+}
+
+#footer { 
+clear:both;
+background-image:url("#{resource['gfx:footer.png']}");
+background-repeat:no-repeat;
+background-position:center; 
+height:79px;
+}

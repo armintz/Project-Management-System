@@ -41,38 +41,28 @@
    		 </ui:define>
 
          <ui:define name="content">
-           <h:form>
-               <p:panel header="Create an Employee">            
-               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                 #{msgs.emp_ID}
-                  <p:inputText id="empID" value="#{manageUser.emp.emp_ID}"/>
-                 #{msgs.pass}
-                  <p:password id="pass" value="#{manageUser.emp.emp_pass}" feedback="true" />
-               	 #{msgs.emp_fname}   
-                  <p:inputText id="fName" value="#{manageUser.emp.first_name}"/>	                 
-                 #{msgs.emp_lname}
-                  <p:inputText id="lName" value="#{manageUser.emp.last_name}"/>
-                 #{msgs.emp_startdate}
-                  <p:calendar id="empStartDate" value="#{manageUser.emp.emp_start_date}"  showOn="button" />  
-                 #{msgs.ft_indicator}
-                  <p:selectOneMenu id="ft_pt" value="#{manageUser.emp.ft_pt}">  
-			            <f:selectItem itemLabel="Full Time" itemValue="Full Time" />  
-			            <f:selectItem itemLabel="Part Time" itemValue="Part Time" />  
-			      </p:selectOneMenu> 
-                 #{msgs.supervisor_id}
-                  <p:inputText id="supID" value="#{manageUser.emp.supervisor_id}"/>
-                 #{msgs.ts_approver_id}
-                  <p:inputText id="apprvrID" value="#{manageUser.emp.ts_approver_id}"/>
-                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
-                   <p:commandButton value="#{msgs.btnCreate}" onclick="bar.show()"
-                                   action="#{manageUser.createUser()}"/>
-                   <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
-						<h:outputText value="Employee successfully created!" style="color:#FFCC00;font-size:22px;" />  
-				   </p:notificationBar>  
-                                   
-               </p:panelGrid>
-  		 		</p:panel>    			                          
-           </h:form>       
+ 
+    		<h:dataTable value="#{timeSheet.ts}" var="o">
+    			<h:column>
+    				<f:facet name="header">Project ID</f:facet>
+    				#{o.proj_ID}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Work Package ID</f:facet>
+    				#{o.wp_ID}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Monday</f:facet>
+    				#{o.mon}
+    			</h:column>
+ 
+    			<h:column>
+    				<f:facet name="header">Friday</f:facet>
+    				#{o.fri}
+    			</h:column>
+    		</h:dataTable>
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   
 			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
