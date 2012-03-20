@@ -25,8 +25,7 @@ public class TimeSheetRow implements Serializable{
 	@Id
 	private Date week_end_day;
 	private int mon;
-	private int fri;
-	
+	private int fri;	
 	@ManyToOne
 	private TimeSheet ts;
 
