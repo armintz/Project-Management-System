@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 
 /**
+ * 
  * The Class UserBean.
  */
 @Entity
