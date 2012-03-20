@@ -1,9 +1,13 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -14,7 +18,7 @@ import javax.persistence.Table;
 @Table(name="employee")
 public class Employee implements Serializable {
     
-    @Id
+    @Id 
     private int emp_ID; 
     private String emp_pass;
     private String first_name;
@@ -23,6 +27,12 @@ public class Employee implements Serializable {
     private String ft_pt;
     private String supervisor_id;
     private String ts_approver_id;
+
+    @ManyToOne
+    private Employee approver;
+    
+    @OneToMany(mappedBy = "approver")
+    private Collection<Employee> peons;
     
     public Employee(){
         
@@ -78,6 +88,19 @@ public class Employee implements Serializable {
     public void setTs_approver_id(String ts_approver_id) {
         this.ts_approver_id = ts_approver_id;
     }
+    public Employee getApprover() {
+        return approver;
+    }
+    public void setApprover(Employee approver) {
+        this.approver = approver;
+    }
+    public Collection<Employee> getPeons() {
+        return peons;
+    }
+    public void setPeons(Collection<Employee> peons) {
+        this.peons = peons;
+    }
+
     
 
 
