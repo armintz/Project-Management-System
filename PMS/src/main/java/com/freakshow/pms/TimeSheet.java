@@ -18,7 +18,6 @@ import javax.persistence.Table;
 public class TimeSheet implements Serializable {
     
     @Id
-    //@ManyToOne
     private int emp_ID;
     private Date week_end_day;
     private Boolean approved;

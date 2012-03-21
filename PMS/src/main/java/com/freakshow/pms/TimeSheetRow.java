@@ -18,7 +18,6 @@ public class TimeSheetRow implements Serializable{
     @Id
 	private int proj_ID;
     @Id
-    //@ManyToOne
     private int emp_ID;
     @Id
 	private String wp_ID;
@@ -34,7 +33,6 @@ public class TimeSheetRow implements Serializable{
         this.wp_ID = wp_ID;
         this.mon = mon;
         this.fri = fri;
-
 	}
 	
     public int getProj_ID() {

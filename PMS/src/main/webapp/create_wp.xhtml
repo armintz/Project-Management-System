@@ -41,28 +41,35 @@
    		 </ui:define>
 
          <ui:define name="content">
- 
-    		<h:dataTable value="#{timeSheet.ts}" var="o">
-    			<h:column>
-    				<f:facet name="header">Project ID</f:facet>
-    				#{o.proj_ID}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Work Package ID</f:facet>
-    				#{o.wp_ID}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Monday</f:facet>
-    				#{o.mon}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Friday</f:facet>
-    				#{o.fri}
-    			</h:column>  			
-    		</h:dataTable>
+           <h:form>
+               <p:panel header="Create a Work Package">            
+               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 #{msgs.wp_ID}
+                  <p:inputText id="empID" value="#{manageUser.emp.emp_ID}"/>
+                 #{msgs.proj_ID}
+                  <p:inputText id="pass" value="#{manageUser.emp.emp_pass}"/>
+               	 #{msgs.startdate}   
+                  <p:calendar id="fName" value="#{manageUser.emp.first_name}" showOn="button" />	                 
+                 #{msgs.re}
+                  <p:inputText id="lName" value="#{manageUser.emp.last_name}"/>
+                 #{msgs.desc}
+                  <p:inputText id="empStartDate" value="#{manageUser.emp.emp_start_date}"  />  
+                 #{msgs.active}
+                  <p:selectOneMenu id="ft_pt" value="#{manageUser.emp.ft_pt}">  
+			            <f:selectItem itemLabel="True" itemValue="True" />  
+			            <f:selectItem itemLabel="False" itemValue="False" />  
+			      </p:selectOneMenu> 
+			      
+                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
+                   <p:commandButton value="#{msgs.btnCreate}" onclick="bar.show()"
+                                   action="#{manageUser.createUser()}"/>
+                   <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+						<h:outputText value="Work package successfully created!" style="color:#FFCC00;font-size:22px;" />  
+				   </p:notificationBar>  
+                                   
+               </p:panelGrid>
+  		 		</p:panel>    			                          
+           </h:form>       
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   
 			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  

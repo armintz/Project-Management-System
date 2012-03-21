@@ -41,28 +41,33 @@
    		 </ui:define>
 
          <ui:define name="content">
- 
-    		<h:dataTable value="#{timeSheet.ts}" var="o">
-    			<h:column>
-    				<f:facet name="header">Project ID</f:facet>
-    				#{o.proj_ID}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Work Package ID</f:facet>
-    				#{o.wp_ID}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Monday</f:facet>
-    				#{o.mon}
-    			</h:column>
- 
-    			<h:column>
-    				<f:facet name="header">Friday</f:facet>
-    				#{o.fri}
-    			</h:column>  			
-    		</h:dataTable>
+           <h:form>
+               <p:panel header="Create a Project">            
+               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 #{msgs.proj_ID}
+                  <p:inputText id="projID" value="#{manageProj.proj.proj_ID}"/>
+                 #{msgs.proj_name}
+                  <p:inputText id="projName" value="#{manageProj.proj.proj_name}"/>
+               	 #{msgs.startdate}   
+                  <p:calendar id="projStartDate" value="#{manageProj.proj.start_date}" showOn="button" />	                 
+                 #{msgs.pm}
+                  <p:inputText id="pm" value="#{manageProj.proj.project_manager}"/>
+                 #{msgs.active}
+                  <p:selectOneMenu id="proj_active" value="#{manageProj.proj.active}">  
+			            <f:selectItem itemLabel="True" itemValue="True" />  
+			            <f:selectItem itemLabel="False" itemValue="False" />  
+			      </p:selectOneMenu> 
+			      
+                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
+                   <p:commandButton value="#{msgs.btnCreate}" onclick="bar.show()"
+                                   action="#{manageProj.createProj()}"/>
+                   <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+						<h:outputText value="Project successfully created!" style="color:#FFCC00;font-size:22px;" />  
+				   </p:notificationBar>  
+                                   
+               </p:panelGrid>
+  		 		</p:panel>    			                          
+           </h:form>       
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   
 			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  

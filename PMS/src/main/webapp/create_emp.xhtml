@@ -15,21 +15,21 @@
          <ui:define name="left">   
 			    <p:menu>  
 			        <p:submenu label="Timesheet">  
-			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        
+			        	<p:menuitem value="Edit" url="time_sheet.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        
 			            <p:menuitem value="Sign" url="#" icon="ui-icon-disk"/>  
 			        </p:submenu>  
 			        <p:submenu label="Employee">  
-			        	<p:menuitem value="Add " url="create_emp.xhtml" icon="ui-icon-arrowrefresh-1-w"/>  	
+			        	<p:menuitem value="Add " url="create_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
 			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        
 			            <p:menuitem value="Remove" url="#" icon="ui-icon-close"/>  
 			        </p:submenu>  
 			        <p:submenu label="Project">  
-			        	<p:menuitem value="Create" url="#" icon="ui-icon-arrowrefresh-1-w"/>  
+			        	<p:menuitem value="Create" url="create_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  
 			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        			        			
 			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>\
 			        </p:submenu>  
 			        <p:submenu label="Work Package">  
-			        	<p:menuitem value="Create" url="#" icon="ui-icon-arrowrefresh-1-w"/>
+			        	<p:menuitem value="Create" url="create_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>
 			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        	
 			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        		        			        			        	  		        			        
 			        </p:submenu>  		
@@ -52,7 +52,7 @@
                   <p:inputText id="fName" value="#{manageUser.emp.first_name}"/>	                 
                  #{msgs.emp_lname}
                   <p:inputText id="lName" value="#{manageUser.emp.last_name}"/>
-                 #{msgs.emp_startdate}
+                 #{msgs.startdate}
                   <p:calendar id="empStartDate" value="#{manageUser.emp.emp_start_date}"  showOn="button" />  
                  #{msgs.ft_indicator}
                   <p:selectOneMenu id="ft_pt" value="#{manageUser.emp.ft_pt}">  

@@ -35,8 +35,7 @@ public class Employee implements Serializable {
     @OneToMany(mappedBy = "approver")
     private Collection<Employee> peons;
     
-    public Employee(){
-        
+    public Employee(){     
     }
     public Employee (int emp_ID){
         emp_ID = this.emp_ID;
@@ -101,9 +100,6 @@ public class Employee implements Serializable {
     public void setPeons(Collection<Employee> peons) {
         this.peons = peons;
     }
-
-    
-
 
 }
 
