@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -24,10 +23,11 @@ public class TimeSheetRow implements Serializable{
 	@Id
 	private Date week_end_day;
 	private int mon;
-	private int fri;	
-	@ManyToOne
-	private TimeSheet ts;
-
+	private int fri;
+	
+	public TimeSheetRow(){
+	}
+	
 	public TimeSheetRow(int proj_ID, String wp_ID, int mon, int fri){
         this.proj_ID = proj_ID;
         this.wp_ID = wp_ID;
@@ -83,11 +83,4 @@ public class TimeSheetRow implements Serializable{
         this.week_end_day = week_end_day;
     }
 
-    public TimeSheet getTs() {
-        return ts;
-    }
-
-    public void setTs(TimeSheet ts) {
-        this.ts = ts;
-    }
 }

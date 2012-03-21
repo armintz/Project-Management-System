@@ -1,6 +1,8 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
@@ -22,8 +24,13 @@ public class TimeSheet implements Serializable {
     private Date week_end_day;
     private Boolean approved;
     
-    @OneToMany(mappedBy = "ts")
-    private Collection<TimeSheetRow> tsRows;
+    @OneToMany
+    private Collection<TimeSheetRow> tsRows= new ArrayList<TimeSheetRow>(Arrays.asList(
+            new TimeSheetRow(),
+            new TimeSheetRow(),
+            new TimeSheetRow(),
+            new TimeSheetRow()
+            ));
     
     public int getEmp_ID() {
         return emp_ID;
@@ -48,21 +55,11 @@ public class TimeSheet implements Serializable {
     public void setApproved(Boolean approved) {
         this.approved = approved;
     }
-
     
-	private TimeSheetRow[] ts = {	        
-        new TimeSheetRow(1,"a",3,4),
-        new TimeSheetRow(2,"a",3,4),
-        new TimeSheetRow(3,"a",3,4)
-	};
-
-    public TimeSheetRow[] getTs() {      
-        return ts;
-    }
-
-    public void setTs(TimeSheetRow[] ts) {
-        this.ts = ts;
-    }
+	public String addRow(){
+	    tsRows.add(new TimeSheetRow());
+	    return "time_sheet";
+	}
 
     public Collection<TimeSheetRow> getTsRows() {
         return tsRows;

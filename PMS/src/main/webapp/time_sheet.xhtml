@@ -41,28 +41,35 @@
    		 </ui:define>
 
          <ui:define name="content">
- 
-    		<h:dataTable value="#{timeSheet.ts}" var="o">
+ 			<h:form>
+ 			Employee ID:
+ 			#{timeSheet.emp_ID}
+    		<h:dataTable value="#{timeSheet.tsRows}" var="o">
     			<h:column>
     				<f:facet name="header">Project ID</f:facet>
-    				#{o.proj_ID}
+    				<p:inputText id= "projID" value="#{o.proj_ID}" />			
     			</h:column>
  
     			<h:column>
     				<f:facet name="header">Work Package ID</f:facet>
-    				#{o.wp_ID}
+    				<p:inputText id= "wpID" value="#{o.wp_ID}" />
     			</h:column>
  
     			<h:column>
     				<f:facet name="header">Monday</f:facet>
-    				#{o.mon}
+     				<p:inputText id= "mon" value="#{o.mon}" />
     			</h:column>
  
     			<h:column>
     				<f:facet name="header">Friday</f:facet>
-    				#{o.fri}
-    			</h:column>  			
+      				<p:inputText id= "fri" value="#{o.fri}" />
+    			</h:column>  	
     		</h:dataTable>
+            <p:commandButton value="Add" 
+                               action="#{timeSheet.addRow()}" immediate="true"/>	    			                         
+            <p:commandButton value="Create" 
+                                   action="#{timeSheet.addRow()}"/>	 
+            </h:form>   		
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   
 			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
