@@ -43,32 +43,37 @@
          <ui:define name="content">
  			<h:form>
  			Employee ID:
- 			#{timeSheet.emp_ID}
-    		<h:dataTable value="#{timeSheet.tsRows}" var="o">
+ 			#{manageUser.emp.emp_ID}		
+    		<h:dataTable value="#{manageTimesheet.ts.tsRows}" var="o">
+    			<h:column>
+    				<f:facet name="header">End Day Week</f:facet>
+           			<p:calendar id="ts_EndDayWeek" value="#{o.week_end_day}"  showOn="button" />  
+    			</h:column>		
+    			<h:column>
+    				<f:facet name="header">Employee ID</f:facet>
+      				<p:inputText id= "empid" value="#{o.emp_ID}" />
+    			</h:column>       			  			    		
     			<h:column>
     				<f:facet name="header">Project ID</f:facet>
     				<p:inputText id= "projID" value="#{o.proj_ID}" />			
-    			</h:column>
- 
+    			</h:column> 
     			<h:column>
     				<f:facet name="header">Work Package ID</f:facet>
     				<p:inputText id= "wpID" value="#{o.wp_ID}" />
-    			</h:column>
- 
+    			</h:column> 
     			<h:column>
     				<f:facet name="header">Monday</f:facet>
      				<p:inputText id= "mon" value="#{o.mon}" />
-    			</h:column>
- 
+    			</h:column> 
     			<h:column>
     				<f:facet name="header">Friday</f:facet>
       				<p:inputText id= "fri" value="#{o.fri}" />
     			</h:column>  	
     		</h:dataTable>
-            <p:commandButton value="Add" 
-                               action="#{timeSheet.addRow()}" immediate="true"/>	    			                         
-            <p:commandButton value="Create" 
-                                   action="#{timeSheet.addRow()}"/>	 
+    		                                   			                         
+            <p:commandButton value="Save" action="#{manageTimesheet.saveTs()}" />
+            <p:commandButton value="Add" action="#{manageTimesheet.addRow()}" />	
+                       	 
             </h:form>   		
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   

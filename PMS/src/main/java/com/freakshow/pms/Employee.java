@@ -1,6 +1,7 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 @Table(name="employee")
 public class Employee implements Serializable {
     
-    @Id 
+    @Id   
     private int emp_ID; 
     private String emp_pass;
     private String first_name;
@@ -35,7 +36,8 @@ public class Employee implements Serializable {
     @OneToMany(mappedBy = "approver")
     private Collection<Employee> peons;
     
-    public Employee(){     
+    public Employee(){   
+        peons = new ArrayList<Employee>();
     }
     public Employee (int emp_ID){
         emp_ID = this.emp_ID;

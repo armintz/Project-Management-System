@@ -6,32 +6,32 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@SessionScoped
-@Named("timeSheet")
 @Entity
 @Table(name="timesheet")
+
 public class TimeSheet implements Serializable {
     
-    @Id
+    @Id 
     private int emp_ID;
     private Date week_end_day;
     private Boolean approved;
     
-    @OneToMany
-    private Collection<TimeSheetRow> tsRows= new ArrayList<TimeSheetRow>(Arrays.asList(
-            new TimeSheetRow(),
-            new TimeSheetRow(),
-            new TimeSheetRow(),
-            new TimeSheetRow()
-            ));
-    
+    @OneToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name="emp_ID")         
+    public Collection<TimeSheetRow> tsRows;
+   
+    public TimeSheet(){
+        tsRows = new ArrayList<TimeSheetRow>(Arrays.asList(
+                new TimeSheetRow()
+                ));
+    }
+   
     public int getEmp_ID() {
         return emp_ID;
     }
@@ -55,17 +55,12 @@ public class TimeSheet implements Serializable {
     public void setApproved(Boolean approved) {
         this.approved = approved;
     }
-    
-	public String addRow(){
-	    tsRows.add(new TimeSheetRow());
-	    return "time_sheet";
-	}
 
-    public Collection<TimeSheetRow> getTsRows() {
+    public Collection<TimeSheetRow> getTsRows() {          
         return tsRows;
     }
 
-    public void setTsRows(Collection<TimeSheetRow> tsRows) {
+    public void setTsRows(Collection<TimeSheetRow> tsRows) {       
         this.tsRows = tsRows;
     }
 }

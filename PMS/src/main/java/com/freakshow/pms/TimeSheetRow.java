@@ -16,10 +16,13 @@ public class TimeSheetRow implements Serializable{
     
     @Id
 	private int proj_ID;
-    @Id
+    
+    @Id  
     private int emp_ID;
+    
     @Id
 	private String wp_ID;
+    
 	@Id
 	private Date week_end_day;
 	private int mon;
@@ -27,14 +30,12 @@ public class TimeSheetRow implements Serializable{
 	
 	public TimeSheetRow(){
 	}
-	
-	public TimeSheetRow(int proj_ID, String wp_ID, int mon, int fri){
-        this.proj_ID = proj_ID;
-        this.wp_ID = wp_ID;
-        this.mon = mon;
-        this.fri = fri;
-	}
-	
+//    public TimeSheetRow(int proj_ID, int emp_ID, String wp_ID, Date week_end_day){
+//        this.emp_ID = emp_ID;
+//        this.proj_ID = proj_ID;
+//        this.wp_ID = wp_ID;
+//        this.week_end_day = week_end_day;
+//    }	
     public int getProj_ID() {
         return proj_ID;
     }

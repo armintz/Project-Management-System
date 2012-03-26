@@ -46,7 +46,6 @@ public class ManageUser implements Serializable {
     
     public void createUser() {
         em.persist(emp);
-        
     }
     
     public void save(ActionEvent actionEvent) {  
