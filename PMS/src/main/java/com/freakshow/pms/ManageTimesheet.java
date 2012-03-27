@@ -22,7 +22,16 @@ public class ManageTimesheet implements Serializable {
     TimeSheet ts = new TimeSheet();
     
     @Inject
-    Employee emp;
+    ManageUser usr;
+    
+    public ManageUser getUsr() {
+        return usr;
+    }
+
+    public void setUsr(ManageUser usr) {
+        this.usr = usr;
+    }
+
     public TimeSheetRow getTsr() {
         return tsr;
     }
@@ -46,8 +55,16 @@ public class ManageTimesheet implements Serializable {
     
     public void saveTs(){
         
-        //ts.setWeek_end_day(tsr.getWeek_end_day());
-        ts.setEmp_ID(emp.getEmp_ID());
+//        Date d = Calendar.getInstance().getTime();   
+//        System.out.println("date: " + d);
+//        ts.setWeek_end_day(d);
+        ts.setEmp_ID(usr.getEmp().getEmp_ID());
+        
+        for (TimeSheetRow t : ts.getTsRows())
+        {          
+              t.setWeek_end_day(ts.getWeek_end_day());
+              t.setEmp_ID(usr.getEmp().getEmp_ID());
+        }
         
         em.persist(ts);        
 //        TimeSheetRowPK pk = new TimeSheetRowPK();
@@ -58,10 +75,7 @@ public class ManageTimesheet implements Serializable {
 //        TimeSheetRow ts = em.find(TimeSheetRow.class, pk);       
         
         
-//        for (TimeSheetRow x : ts.getTsRows())
-//        {
-//            em.persist(x);
-//        }
+//        
     }
     
 }

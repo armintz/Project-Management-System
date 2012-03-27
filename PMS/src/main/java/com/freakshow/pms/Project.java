@@ -1,9 +1,11 @@
 package com.freakshow.pms;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +19,9 @@ public class Project {
     private Date start_date;
     private int project_manager;
     
+    @OneToMany
+    public Collection<WorkPackage> wp;
+
     public int getProj_ID() {
         return proj_ID;
     }
@@ -46,5 +51,11 @@ public class Project {
     }
     public void setProject_manager(int project_manager) {
         this.project_manager = project_manager;
+    }
+    public Collection<WorkPackage> getWp() {
+        return wp;
+    }
+    public void setWp(Collection<WorkPackage> wp) {
+        this.wp = wp;
     }
 }

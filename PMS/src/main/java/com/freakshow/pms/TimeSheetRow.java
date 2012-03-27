@@ -26,16 +26,14 @@ public class TimeSheetRow implements Serializable{
 	@Id
 	private Date week_end_day;
 	private int mon;
+    private int tues;
+    private int wed;
+    private int thurs;
 	private int fri;
-	
-	public TimeSheetRow(){
+   
+    public TimeSheetRow(){
 	}
-//    public TimeSheetRow(int proj_ID, int emp_ID, String wp_ID, Date week_end_day){
-//        this.emp_ID = emp_ID;
-//        this.proj_ID = proj_ID;
-//        this.wp_ID = wp_ID;
-//        this.week_end_day = week_end_day;
-//    }	
+
     public int getProj_ID() {
         return proj_ID;
     }
@@ -58,6 +56,30 @@ public class TimeSheetRow implements Serializable{
 
     public void setMon(int mon) {
         this.mon = mon;
+    }
+
+    public int getTues() {
+        return tues;
+    }
+
+    public void setTues(int tues) {
+        this.tues = tues;
+    }
+
+    public int getWed() {
+        return wed;
+    }
+
+    public void setWed(int wed) {
+        this.wed = wed;
+    }
+
+    public int getThurs() {
+        return thurs;
+    }
+
+    public void setThurs(int thurs) {
+        this.thurs = thurs;
     }
 
     public int getFri() {
