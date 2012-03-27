@@ -11,11 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-/**
- * 
- * The Class UserBean.
- */
 @Entity
 @Table(name="employee")
 public class Employee implements Serializable {
@@ -102,6 +97,5 @@ public class Employee implements Serializable {
     public void setPeons(Collection<Employee> peons) {
         this.peons = peons;
     }
-
 }
 

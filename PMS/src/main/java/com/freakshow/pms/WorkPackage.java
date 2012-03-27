@@ -1,7 +1,6 @@
 package com.freakshow.pms;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -16,6 +15,7 @@ public class WorkPackage {
     private String wp_ID;
     @Id
     private int proj_ID;
+    
     private boolean active;
     private Date start_date;
     private int responsible_engineer;

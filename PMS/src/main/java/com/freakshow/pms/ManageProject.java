@@ -30,8 +30,7 @@ public class ManageProject implements Serializable {
         return proj;
     }
 
-    public void setAvailableProj(List<Integer> availableProj) {
-       
+    public void setAvailableProj(List<Integer> availableProj) {       
         this.availableProj = availableProj;
     }
 

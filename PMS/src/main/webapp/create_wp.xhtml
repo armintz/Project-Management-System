@@ -45,7 +45,7 @@
                <p:panel header="Create a Work Package">            
                <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                  #{msgs.wp_ID}
-                  <p:inputText id="wpID" value="#{manageProj.wp.wp_ID}"/>
+                  <p:inputText id="wpID" value="#{manageProj.wp.wp_ID}" required="true" />
                  #{msgs.proj_ID}
 				 <p:selectOneMenu value="#{manageProj.wp.proj_ID}">
 				    <f:selectItems value="#{manageProj.availableProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
@@ -61,7 +61,7 @@
 			            <f:selectItem itemLabel="True" itemValue="True" />  
 			            <f:selectItem itemLabel="False" itemValue="False" />  
 			      </p:selectOneMenu> 
-			      
+ 				   <p:message for="wpID" id="msgWpID" />                   			      
                    <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
                    <p:commandButton value="Create Work Package" onclick="bar.show()"
                                    action="#{manageProj.createWP()}"/>

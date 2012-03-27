@@ -49,10 +49,12 @@
       				
      			<p:column>
     				<f:facet name="header">Project ID</f:facet>
-    				<p:inputText id= "projID" value="#{o.proj_ID}" />			
+					<p:selectOneMenu value="#{o.proj_ID}">
+					    <f:selectItems value="#{manageProj.availableProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+					</p:selectOneMenu>      						
     			</p:column> 
     			<p:column>
-     				<f:facet name="header">Work Package ID</f:facet>   			
+     				<f:facet name="header">Work Package ID</f:facet>     				  			
     				<p:inputText id= "wpID" value="#{o.wp_ID}" />
     			</p:column>  			
     			<p:column>

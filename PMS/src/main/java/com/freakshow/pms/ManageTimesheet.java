@@ -8,16 +8,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-/**
- * The Class ManageUser.
- */
+
 @Named("manageTimesheet")
 @SessionScoped
 @Stateful
 public class ManageTimesheet implements Serializable {
     
     @PersistenceContext
-    protected EntityManager em;   
+    protected EntityManager em;  
+    
     TimeSheetRow tsr = new TimeSheetRow();
     TimeSheet ts = new TimeSheet();
     

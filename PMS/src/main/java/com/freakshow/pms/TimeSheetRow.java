@@ -8,23 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name="timesheetRow")
 @IdClass(TimeSheetRowPK.class)
 public class TimeSheetRow implements Serializable{
     
     @Id
-	private int proj_ID;
-    
+	private int proj_ID;   
     @Id  
-    private int emp_ID;
-    
+    private int emp_ID;   
     @Id
-	private String wp_ID;
-    
+	private String wp_ID;    
 	@Id
 	private Date week_end_day;
+	
 	private int mon;
     private int tues;
     private int wed;
