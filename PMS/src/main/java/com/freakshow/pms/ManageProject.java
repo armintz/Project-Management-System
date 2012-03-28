@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,9 +21,55 @@ public class ManageProject implements Serializable {
     @PersistenceContext
     protected EntityManager em;
     
+    @Inject 
+    ManageUser emp;
+    
+
+
     Project proj = new Project();
     WorkPackage wp = new WorkPackage();
+    Estimate est = new Estimate();
+    
+    public Estimate getEst() {
+        return est;
+    }
+
+    public void setEst(Estimate est) {
+        this.est = est;
+    }
+
     List<Integer> availableProj;
+    List<String> availableWP;
+    List<String> reWP;
+ 
+    public ManageUser getEmp() {
+        return emp;
+    }
+
+    public void setEmp(ManageUser emp) {
+        this.emp = emp;
+    } 
+    
+    public List<String> getAvailableWP() {
+        TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage", String.class);
+        availableWP =  q.getResultList();           
+        return availableWP;
+    }
+
+    public void setAvailableWP(List<String> availableWP) {
+        this.availableWP = availableWP;
+    }
+ 
+    public List<String> getReWP() {
+        TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE responsible_engineer = :re", String.class);
+        q.setParameter("re", emp.getEmp().getEmp_ID());
+        List<String> rwp =  (List<String>)q.getResultList();        
+        return rwp;
+    }
+
+    public void setReWP(List<String> reWP) {
+        this.reWP = reWP;
+    }
     
     public List<Integer> getAvailableProj() {     
         TypedQuery<Integer> q = em.createQuery("SELECT proj_ID FROM Project", Integer.class);
@@ -33,7 +80,19 @@ public class ManageProject implements Serializable {
     public void setAvailableProj(List<Integer> availableProj) {       
         this.availableProj = availableProj;
     }
+ 
 
+    public void handleProjChange(int proj) {  
+        if(proj != 0)  
+            availableWP = null; 
+        else{
+            TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE proj_ID = :proj", String.class);
+            q.setParameter("proj", proj);
+            availableWP =  q.getResultList();    
+            setAvailableWP(q.getResultList());
+        }
+    } 
+    
     public Project getProj() {
         return proj;
     }

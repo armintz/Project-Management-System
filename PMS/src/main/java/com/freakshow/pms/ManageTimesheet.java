@@ -71,10 +71,7 @@ public class ManageTimesheet implements Serializable {
 //        pk.setWp_ID("a1");
 //        pk.setProj_ID(1);
 //        pk.setEmp_ID(2);
-//        TimeSheetRow ts = em.find(TimeSheetRow.class, pk);       
-        
-        
-//        
+//        TimeSheetRow ts = em.find(TimeSheetRow.class, pk);           
     }
     
 }

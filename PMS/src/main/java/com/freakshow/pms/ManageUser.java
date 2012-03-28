@@ -48,6 +48,16 @@ public class ManageUser implements Serializable {
         em.persist(emp);
     }
     
+    public boolean showMenuEmployee(){     
+        return emp.isRole_HR();
+    }    
+    public boolean showMenuWP(){     
+        return emp.isRole_create_WP();
+    }
+    public boolean showMenuProject(){     
+        return emp.isRole_Supervisor();
+    }   
+    
     public void save(ActionEvent actionEvent) {  
         addMessage("Data saved");  
     }  

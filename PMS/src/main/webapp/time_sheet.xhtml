@@ -11,51 +11,28 @@
          <ui:define name="heading">       
             <ui:include src="/resources/sections/header.xhtml"/>
          </ui:define>
-         
-         <ui:define name="left">   
-			    <p:menu>  
-			        <p:submenu label="Timesheet">  
-			        	<p:menuitem value="Edit" url="time_sheet.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        
-			            <p:menuitem value="Sign" url="#" icon="ui-icon-disk"/>  
-			        </p:submenu>  
-			        <p:submenu label="Employee">  
-			        	<p:menuitem value="Add " url="create_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
-			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        
-			            <p:menuitem value="Remove" url="#" icon="ui-icon-close"/>  
-			        </p:submenu>  
-			        <p:submenu label="Project">  
-			        	<p:menuitem value="Create" url="create_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  
-			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        			        			
-			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>\
-			        </p:submenu>  
-			        <p:submenu label="Work Package">  
-			        	<p:menuitem value="Create" url="create_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>
-			        	<p:menuitem value="Edit" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        	
-			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        		        			        			        	  		        			        
-			        </p:submenu>  		
-			        <p:submenu label="Report">  
-			        	<p:menuitem value="Create" url="#" icon="ui-icon-arrowrefresh-1-w"/>
-			        	<p:menuitem value="View" url="#" icon="ui-icon-arrowrefresh-1-w"/>			        	  		        			        		        		        			        			        	  		        			        			        	        			        
-			        </p:submenu>  			        			        	        
-			    </p:menu>           
-   		 </ui:define>
 
          <ui:define name="content">
          
  			<h:form> 			
-    		<p:dataTable value="#{manageTimesheet.ts.tsRows}" var="o" style="position:absolute">
+    		<p:dataTable id="tsDataTable" value="#{manageTimesheet.ts.tsRows}" var="o" style="position:absolute">
       			<f:facet name="header">Week End Day:<p:calendar id="weekEndDay" value="#{manageTimesheet.ts.week_end_day}"  showOn="button" />  
       			Employee ID: #{manageUser.emp.emp_ID} </f:facet>   	
       				
      			<p:column>
     				<f:facet name="header">Project ID</f:facet>
-					<p:selectOneMenu value="#{o.proj_ID}">
+					<p:selectOneMenu id="selectProj" value="#{o.proj_ID}">
+		                <f:selectItem itemLabel="Select Project ID" itemValue="" />  			
 					    <f:selectItems value="#{manageProj.availableProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+						<p:ajax update="selectWP" listener="#{manageProj.handleProjChange(o.proj_ID)}" /> 					    
 					</p:selectOneMenu>      						
     			</p:column> 
     			<p:column>
      				<f:facet name="header">Work Package ID</f:facet>     				  			
-    				<p:inputText id= "wpID" value="#{o.wp_ID}" />
+					<p:selectOneMenu id="selectWP" value="#{o.wp_ID}">
+		                <f:selectItem itemLabel="Select WP ID" itemValue="" />  			
+					    <f:selectItems value="#{manageProj.availableWP}" var="w" itemLabel="#{w}" itemValue="#{w}"/>
+					</p:selectOneMenu>      				
     			</p:column>  			
     			<p:column>
     				<f:facet name="header">Monday</f:facet>
@@ -80,12 +57,12 @@
 			</p:dataTable> 	
 			
             <p:commandButton value="Save" action="#{manageTimesheet.saveTs()}" style="position:absolute; top:600px; left:280px" />
-            <p:commandButton value="Add" action="#{manageTimesheet.addRow()}" style="position:absolute; top:600px; left:220px" />   		                                   			                         
+            <p:commandButton value="Add" update="tsDataTable" action="#{manageTimesheet.addRow}" style="position:absolute; top:600px; left:220px"  />   		                                   			                         
 
                        	 
             </h:form>   		
 			<p:dock>  
-			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="#"/>   
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
 			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
 			</p:dock>              
          </ui:define>

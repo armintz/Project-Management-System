@@ -22,9 +22,13 @@ public class Employee implements Serializable {
     private String last_name;
     private Date emp_start_date;
     private String ft_pt;
-    private String supervisor_id;
-    private String ts_approver_id;
-
+    private int supervisor_ID;
+    private int ts_approver_ID;
+    private boolean role_create_WP;
+    private boolean role_HR;
+    private boolean role_PM; 
+    private boolean role_Supervisor;
+    
     @ManyToOne
     private Employee approver;
     
@@ -73,17 +77,42 @@ public class Employee implements Serializable {
     public void setFt_pt(String ft_pt) {
         this.ft_pt = ft_pt;
     }
-    public String getSupervisor_id() {
-        return supervisor_id;
+
+    public int getSupervisor_ID() {
+        return supervisor_ID;
     }
-    public void setSupervisor_id(String supervisor_id) {
-        this.supervisor_id = supervisor_id;
+    public void setSupervisor_ID(int supervisor_ID) {
+        this.supervisor_ID = supervisor_ID;
     }
-    public String getTs_approver_id() {
-        return ts_approver_id;
+    public int getTs_approver_ID() {
+        return ts_approver_ID;
     }
-    public void setTs_approver_id(String ts_approver_id) {
-        this.ts_approver_id = ts_approver_id;
+    public void setTs_approver_ID(int ts_approver_ID) {
+        this.ts_approver_ID = ts_approver_ID;
+    }
+    public boolean isRole_create_WP() {
+        return role_create_WP;
+    }
+    public void setRole_create_WP(boolean role_create_WP) {
+        this.role_create_WP = role_create_WP;
+    }
+    public boolean isRole_HR() {
+        return role_HR;
+    }
+    public void setRole_HR(boolean role_HR) {
+        this.role_HR = role_HR;
+    }
+    public boolean isRole_PM() {
+        return role_PM;
+    }
+    public void setRole_PM(boolean role_PM) {
+        this.role_PM = role_PM;
+    }
+    public boolean isRole_Supervisor() {
+        return role_Supervisor;
+    }
+    public void setRole_Supervisor(boolean role_Supervisor) {
+        this.role_Supervisor = role_Supervisor;
     }
     public Employee getApprover() {
         return approver;
