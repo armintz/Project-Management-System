@@ -21,7 +21,7 @@ public class Project {
     
     @OneToMany
     public Collection<WorkPackage> wp;
-
+    
     public int getProj_ID() {
         return proj_ID;
     }

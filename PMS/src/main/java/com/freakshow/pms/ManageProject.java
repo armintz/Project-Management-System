@@ -25,10 +25,13 @@ public class ManageProject implements Serializable {
     ManageUser emp;
     
 
-
+    int projNo;
     Project proj = new Project();
     WorkPackage wp = new WorkPackage();
     Estimate est = new Estimate();
+    List<Integer> availableProj;
+    List<String> availableWP;
+    List<String> reWP;    
     
     public Estimate getEst() {
         return est;
@@ -37,10 +40,6 @@ public class ManageProject implements Serializable {
     public void setEst(Estimate est) {
         this.est = est;
     }
-
-    List<Integer> availableProj;
-    List<String> availableWP;
-    List<String> reWP;
  
     public ManageUser getEmp() {
         return emp;
@@ -50,10 +49,30 @@ public class ManageProject implements Serializable {
         this.emp = emp;
     } 
     
-    public List<String> getAvailableWP() {
-        TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage", String.class);
-        availableWP =  q.getResultList();           
-        return availableWP;
+    public Project getProj() {
+        return proj;
+    }
+    
+
+    public void setProj(Project proj) {
+        this.proj = proj;
+    }
+    
+
+    public WorkPackage getWp() {
+        return wp;
+    }
+    
+
+    public void setWp(WorkPackage wp) {
+        this.wp = wp;
+    }    
+    
+    public List<String> getAvailableWP() { 
+          TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE proj_ID = :proj", String.class);
+          q.setParameter("proj", projNo);
+          availableWP =  q.getResultList();    
+          return availableWP;
     }
 
     public void setAvailableWP(List<String> availableWP) {
@@ -83,32 +102,9 @@ public class ManageProject implements Serializable {
  
 
     public void handleProjChange(int proj) {  
-        if(proj != 0)  
-            availableWP = null; 
-        else{
-            TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE proj_ID = :proj", String.class);
-            q.setParameter("proj", proj);
-            availableWP =  q.getResultList();    
-            setAvailableWP(q.getResultList());
-        }
+        projNo = proj;
     } 
     
-    public Project getProj() {
-        return proj;
-    }
-
-    public void setProj(Project proj) {
-        this.proj = proj;
-    }
-
-    public WorkPackage getWp() {
-        return wp;
-    }
-
-    public void setWp(WorkPackage wp) {
-        this.wp = wp;
-    }
-
     public String verifyProj(){
         return "create_proj";
     }   

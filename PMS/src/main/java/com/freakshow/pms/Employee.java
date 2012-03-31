@@ -1,14 +1,10 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,15 +25,15 @@ public class Employee implements Serializable {
     private boolean role_PM; 
     private boolean role_Supervisor;
     
-    @ManyToOne
-    private Employee approver;
+//    @ManyToOne
+//    private Employee approver;
+//    
+//    @OneToMany(mappedBy = "approver")
+//    private Collection<Employee> peons;
     
-    @OneToMany(mappedBy = "approver")
-    private Collection<Employee> peons;
-    
-    public Employee(){   
-        peons = new ArrayList<Employee>();
+    public Employee(){
     }
+    
     public Employee (int emp_ID){
         emp_ID = this.emp_ID;
     }
@@ -77,7 +73,6 @@ public class Employee implements Serializable {
     public void setFt_pt(String ft_pt) {
         this.ft_pt = ft_pt;
     }
-
     public int getSupervisor_ID() {
         return supervisor_ID;
     }
@@ -113,18 +108,6 @@ public class Employee implements Serializable {
     }
     public void setRole_Supervisor(boolean role_Supervisor) {
         this.role_Supervisor = role_Supervisor;
-    }
-    public Employee getApprover() {
-        return approver;
-    }
-    public void setApprover(Employee approver) {
-        this.approver = approver;
-    }
-    public Collection<Employee> getPeons() {
-        return peons;
-    }
-    public void setPeons(Collection<Employee> peons) {
-        this.peons = peons;
     }
 }
 

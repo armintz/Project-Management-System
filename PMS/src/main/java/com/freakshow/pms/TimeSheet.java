@@ -9,21 +9,22 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="timesheet")
-
+@IdClass(TimeSheetPK.class)
 public class TimeSheet implements Serializable {
     
     @Id 
     private int emp_ID;
+    @Id
     private Date week_end_day;
     private Boolean approved;
     
     @OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name="emp_ID")         
     public Collection<TimeSheetRow> tsRows;
    
     public TimeSheet(){
