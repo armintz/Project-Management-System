@@ -25,12 +25,6 @@ public class Employee implements Serializable {
     private boolean role_PM; 
     private boolean role_Supervisor;
     
-//    @ManyToOne
-//    private Employee approver;
-//    
-//    @OneToMany(mappedBy = "approver")
-//    private Collection<Employee> peons;
-    
     public Employee(){
     }
     

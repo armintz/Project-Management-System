@@ -15,7 +15,7 @@
          <ui:define name="content">
 		 <h2>Welcome <h:outputText value="#{manageUser.emp.first_name}"/>!</h2>
            <h:form>
-               <p:panel header="Create a Workpackage Estimate">            
+           	<p:panel header="Create a Workpackage Estimate">            
                <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 				 	<p:selectOneMenu value="#{manageProj.est.wp_ID}">
 				    	<f:selectItems value="#{manageProj.reWP}" var="r" itemLabel="#{r}" itemValue="#{r}"/>
@@ -23,13 +23,30 @@
                    <p:commandButton value="Create WP Estimate" 
                                    action="#{manageEst.validateReWP()}" ajax="false"/>				             
                </p:panelGrid>
-  		 		</p:panel>    			 				                          
+  		 	</p:panel>   
+  		 	<p:separator /> 
+           	<p:panel header="Approve Timesheet" rendered="#{approveTs.showPanelApprove()}">            
+               <p:panelGrid  columns="3" style="margin-bottom:10px" cellpadding="5">
+					<p:selectOneMenu id="selectDate" value="#{approveTs.CDate}">
+		                <f:selectItem itemLabel="Select week end date" itemValue="" />  			
+					    <f:selectItems value="#{approveTs.weekEndDates}" var="d" itemLabel="#{d.toString()}" itemValue="#{d}" />
+					<!-- 	<p:ajax update="selectEmpID" listener="#{approveTs.handleDateChange(d)}" /> 	 -->				    
+					</p:selectOneMenu>    				  			
+					<p:selectOneMenu id="selectEmpID" value="#{approveTs.chosenEmpID}">
+		                <f:selectItem itemLabel="Select employee ID" itemValue="" />  			
+					    <f:selectItems value="#{approveTs.empIDs}" var="e" itemLabel="#{e.toString()}" itemValue="#{e}"/>
+					</p:selectOneMenu>   
+					<h:message for="selectDate"/>					  
+                   <p:commandButton value="View Timesheet" 
+                                   action="#{approveTs.approveTS()}" ajax="false"/>				             
+               </p:panelGrid>
+  		 	</p:panel>   		 		  		 		 			 				                          
            </h:form>
-			<p:dock>  
-			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
-			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
-			</p:dock>              
-         </ui:define>
+		<p:dock>  
+		    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+		    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+		</p:dock>              
+        </ui:define>
 		<script type="text/javascript">  
 		    function fadein(input, container) {  
 		        container.fadeIn("slow");  

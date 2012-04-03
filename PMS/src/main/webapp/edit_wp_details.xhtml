@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+               <p:panel header="Edit a Work Package">            
+               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 #{msgs.wp_ID}
+                  <p:inputText id="wpID" value="#{manageProj.wp.wp_ID}" required="true" />
+                 #{msgs.proj_ID}
+				 <p:selectOneMenu value="#{manageProj.wp.proj_ID}">
+				    <f:selectItems value="#{manageProj.availableProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+				</p:selectOneMenu>                
+               	 #{msgs.startdate}   
+                  <p:calendar id="wpStartDate" value="#{manageProj.wp.start_date}" showOn="button" />	                 
+                 #{msgs.re}
+                  <p:inputText id="re" value="#{manageProj.wp.responsible_engineer}"/>
+                 #{msgs.desc}
+                  <p:inputText id="Description" value="#{manageProj.wp.description}"  />  
+                 #{msgs.active}
+                  <p:selectOneMenu id="wpActive" value="#{manageProj.wp.active}">  
+			            <f:selectItem itemLabel="True" itemValue="True" />  
+			            <f:selectItem itemLabel="False" itemValue="False" />  
+			      </p:selectOneMenu> 
+ 				   <p:message for="wpID" id="msgWpID" />                   			      
+                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
+                   <p:commandButton value="Submit Changes" onclick="bar.show()"
+                                   action="#{manageProj.updateWP()}"/>
+                   <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+						<h:outputText value="Work package successfully created!" style="color:#FFCC00;font-size:22px;" />  
+				   </p:notificationBar>  
+                                   
+               </p:panelGrid>
+  		 		</p:panel>    			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

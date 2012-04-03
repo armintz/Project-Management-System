@@ -22,10 +22,10 @@ public class ManageProject implements Serializable {
     protected EntityManager em;
     
     @Inject 
-    ManageUser emp;
-    
+    ManageUser emp;   
 
     int projNo;
+    String wpNo = null;
     Project proj = new Project();
     WorkPackage wp = new WorkPackage();
     Estimate est = new Estimate();
@@ -113,6 +113,34 @@ public class ManageProject implements Serializable {
         em.persist(proj);      
     }
     
+    public String editProj(int selectedProjID) {
+        proj = em.find(Project.class, selectedProjID);
+        return "edit_proj_details";
+    }
+    
+    public void updateProj() {
+        em.merge(proj);
+        em.flush();
+    } 
+
+    public String editWP() {
+        WorkPackagePK pk = new WorkPackagePK();
+        pk.setProj_ID(projNo);
+        pk.setWp_ID(wpNo);
+        System.out.println( "WP #: " + wpNo);
+        wp = em.find(WorkPackage.class, pk); 
+        return "edit_wp_details";
+      }
+      
+      public void updateWP() {
+          em.merge(wp);
+          em.flush();
+      }
+      
+      public void handleWPChangeEdit(String selectedWPID) {  
+          wpNo = selectedWPID;
+      }    
+     
     public void createWP() {
         em.persist(wp);      
     }

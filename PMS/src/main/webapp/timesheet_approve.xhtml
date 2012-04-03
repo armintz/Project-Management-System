@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+ 			<h:form> 			
+    		<p:dataTable id="atsDataTable" value="#{approveTs.tsRow}" var="t" style="position:absolute">
+      			<f:facet name="header">Employee ID: #{manageUser.emp.emp_ID} </f:facet>   				
+     			<p:column>
+    				<f:facet name="header">Project ID</f:facet>
+					<h:outputText id="aselectProj" value="#{t.proj_ID}"/>
+    			</p:column> 
+    			<p:column>
+     				<f:facet name="header">Work Package ID</f:facet>     				  			
+					<h:outputText id="aselectWP" value="#{t.wp_ID}"/>
+    			</p:column>  			
+    			<p:column>
+    				<f:facet name="header">Monday</f:facet>
+     				<h:outputText id= "amon" value="#{t.mon}" size ='7'/>
+    			</p:column> 
+     			<p:column>
+    				<f:facet name="header">Tuesday</f:facet>
+     				<h:outputText id= "atue" value="#{t.tues}" size ='7'/>
+    			</p:column> 
+   				<p:column>
+    				<f:facet name="header">wednesday</f:facet>
+     				<h:outputText id= "awed" value="#{t.wed}" size ='7'/>
+    			</p:column>
+   				<p:column>
+    				<f:facet name="header">Thursday</f:facet>
+     				<h:outputText id= "athurs" value="#{t.thurs}" size ='7'/>
+    			</p:column>     			     			  			
+    			<p:column>
+    				<f:facet name="header">Friday</f:facet>
+      				<h:outputText id= "afri" value="#{t.fri}" size ='7'/>
+    			</p:column>  	
+			</p:dataTable> 		 
+            <p:commandButton value="Update" action="#{approveTs.updateTs()}" style="position:absolute; top:600px; left:280px" />            
+            </h:form>   		
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

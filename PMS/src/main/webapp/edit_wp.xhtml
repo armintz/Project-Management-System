@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+                            
+                 <p:dataTable value="#{manageTimesheet.ts.tsRows}" var="o" style="position:absolute">	      				
+	     			<p:column>
+	    				<f:facet name="header">Project ID</f:facet>
+						<p:selectOneMenu id="selectProj" value="#{o.proj_ID}">
+			                <f:selectItem itemLabel="Select Project ID" itemValue="" />  			
+						    <f:selectItems value="#{manageProj.availableProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+							<p:ajax update="selectWP" listener="#{manageProj.handleProjChange(o.proj_ID)}" /> 					    
+						</p:selectOneMenu>      						
+	    			</p:column> 
+	    			<p:column>
+	     				<f:facet name="header">Work Package ID</f:facet>     				  			
+						<p:selectOneMenu id="selectWP" value="#{o.wp_ID}">
+			                <f:selectItem itemLabel="Select WP ID" itemValue="" />  			
+						    <f:selectItems value="#{manageProj.availableWP}" var="w" itemLabel="#{w}" itemValue="#{w}"/>
+						    <p:ajax  listener="#{manageProj.handleWPChangeEdit(o.wp_ID)}" /> 
+						</p:selectOneMenu>      				
+	    			</p:column>
+
+   				</p:dataTable>
+                 
+	                   <p:commandButton value="Edit Work Package" style="position:absolute; top:320px; left:220px"
+                            action="#{manageProj.editWP()}" ajax="false"/>                                        
+
+                                   
+               			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+               <p:panel header="Edit This Employee">            
+               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                 #{msgs.emp_ID}
+                  <p:inputText id="empID" value="#{manageUser.emp.emp_ID}"/>
+                 #{msgs.pass}
+                  <p:password id="pass" value="#{manageUser.emp.emp_pass}" feedback="true" />
+               	 #{msgs.emp_fname}   
+                  <p:inputText id="fName" value="#{manageUser.emp.first_name}"/>	                 
+                 #{msgs.emp_lname}
+                  <p:inputText id="lName" value="#{manageUser.emp.last_name}"/>
+                 #{msgs.startdate}
+                  <p:calendar id="empStartDate" value="#{manageUser.emp.emp_start_date}"  showOn="button" />  
+                 #{msgs.ft_indicator}
+                  <p:selectOneMenu id="ft_pt" value="#{manageUser.emp.ft_pt}">  
+			            <f:selectItem itemLabel="Full Time" itemValue="Full Time" />  
+			            <f:selectItem itemLabel="Part Time" itemValue="Part Time" />  
+			      </p:selectOneMenu> 
+                 #{msgs.supervisor_id}
+                  <p:inputText id="supID" value="#{manageUser.emp.supervisor_ID}"/>
+                 #{msgs.ts_approver_id}
+                  <p:inputText id="apprvrID" value="#{manageUser.emp.ts_approver_ID}"/>                                   
+                  Create Work Package
+                  <p:selectBooleanCheckbox id="Role_WP" value="#{manageUser.emp.role_create_WP}" />
+                  Human Resources
+                  <p:selectBooleanCheckbox id="Role_HR" value="#{manageUser.emp.role_HR}" />                  
+                  Project Manager
+                  <p:selectBooleanCheckbox id="Role_PM" value="#{manageUser.emp.role_Supervisor}" />
+                  
+                  <!--  Create Project<p:selectBooleanCheckbox id="Role_Project" value="" />
+                  PM Assistant<p:selectBooleanCheckbox id="Role_PM_Asst" value="" />
+                  Supervisor<p:selectBooleanCheckbox id="Role_Supervisor" value="" /> -->
+                                    
+                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
+                   <p:commandButton value="Submit Changes" onclick="bar.show()"
+                                   action="#{manageUser.updateEmp()}"/>
+                   <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
+						<h:outputText value="Employee successfully created!" style="color:#FFCC00;font-size:22px;" />  
+				   </p:notificationBar>  
+                                   
+               </p:panelGrid>
+  		 		</p:panel>    			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

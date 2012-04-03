@@ -58,6 +58,7 @@ public class ManageTimesheet implements Serializable {
 //        System.out.println("date: " + d);
 //        ts.setWeek_end_day(d);
         ts.setEmp_ID(usr.getEmp().getEmp_ID());
+        ts.setApproved(false);
         
         for (TimeSheetRow t : ts.getTsRows())
         {          

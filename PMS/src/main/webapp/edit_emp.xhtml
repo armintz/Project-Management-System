@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+               <p:panel header="Choose an Employee to Edit">            
+               <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                #{msgs.emp_ID}
+               	  <p:selectOneMenu value="#{manageUser.emp.emp_ID}">
+				    <f:selectItems value="#{manageUser.availableEmp}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+				  </p:selectOneMenu> 
+                
+                   <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
+                   <p:commandButton value="Edit Employee" onclick="bar.show()"
+                                   action="#{manageUser.editEmp(manageUser.emp.emp_ID)}"/>
+                                   
+               </p:panelGrid>
+  		 		</p:panel>    			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

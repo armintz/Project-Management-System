@@ -1,15 +1,17 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.faces.event.ActionEvent;  
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;  
+import javax.persistence.TypedQuery;
 /**
  * The Class ManageUser.
  */
@@ -22,6 +24,8 @@ public class ManageUser implements Serializable {
     protected EntityManager em;
     Employee emp = new Employee();
 
+    List<Integer> availableEmp;
+    
     public Employee getEmp() {
         return emp;
     }
@@ -77,4 +81,24 @@ public class ManageUser implements Serializable {
     public void addInfo(ActionEvent actionEvent) {  
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Welcome Employee", "Employee Successfully Created!"));  
     } 
+    
+    public List<Integer> getAvailableEmp() {     
+        TypedQuery<Integer> q = em.createQuery("SELECT emp_ID FROM Employee", Integer.class);
+        List<Integer> emps =  (List<Integer>)q.getResultList();      
+        return emps;
+    }
+
+    public void setAvailableEmp(List<Integer> availableEmp) {       
+        this.availableEmp = availableEmp;
+    }
+    
+    public String editEmp(int selectedEmpID) {
+        emp = em.find(Employee.class, selectedEmpID);
+        return "edit_emp_details";
+    }
+    
+    public void updateEmp() {
+        em.merge(emp);
+        em.flush();
+    }
 }
