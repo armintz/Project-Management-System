@@ -23,7 +23,9 @@ public class ManageUser implements Serializable {
     @PersistenceContext
     protected EntityManager em;
     Employee emp = new Employee();
-
+    Employee tempEmp = new Employee();
+    Plevel pL = new Plevel();
+    
     List<Integer> availableEmp;
     
     public Employee getEmp() {
@@ -33,7 +35,23 @@ public class ManageUser implements Serializable {
     public void setEmp(Employee emp) {
         this.emp = emp;
     }
+    
+    public Employee getTempEmp() {
+        return tempEmp;
+    }
 
+    public void setTempEmp(Employee tempEmp) {
+        this.tempEmp = tempEmp;
+    }
+    
+    public Plevel getpL() {
+        return pL;
+    }
+
+    public void setpL(Plevel pL) {
+        this.pL = pL;
+    }
+    
     public String verifyUser(){
         try{            
             Employee temp_emp = em.find(Employee.class, emp.getEmp_ID());
@@ -49,7 +67,7 @@ public class ManageUser implements Serializable {
     }   
     
     public void createUser() {
-        em.persist(emp);
+        em.persist(tempEmp);
     }
     
     public boolean showMenuEmployee(){     
@@ -62,26 +80,6 @@ public class ManageUser implements Serializable {
         return emp.isRole_Supervisor();
     }   
     
-    public void save(ActionEvent actionEvent) {  
-        addMessage("Data saved");  
-    }  
-      
-    public void update(ActionEvent actionEvent) {  
-        addMessage("Data updated");  
-    }  
-      
-    public void delete(ActionEvent actionEvent) {  
-        addMessage("Data deleted");  
-    }  
-      
-    public void addMessage(String summary) {  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);  
-        FacesContext.getCurrentInstance().addMessage(null, message);  
-    }    
-    public void addInfo(ActionEvent actionEvent) {  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Welcome Employee", "Employee Successfully Created!"));  
-    } 
-    
     public List<Integer> getAvailableEmp() {     
         TypedQuery<Integer> q = em.createQuery("SELECT emp_ID FROM Employee", Integer.class);
         List<Integer> emps =  (List<Integer>)q.getResultList();      
@@ -93,12 +91,17 @@ public class ManageUser implements Serializable {
     }
     
     public String editEmp(int selectedEmpID) {
-        emp = em.find(Employee.class, selectedEmpID);
+        tempEmp = em.find(Employee.class, selectedEmpID);
         return "edit_emp_details";
     }
     
     public void updateEmp() {
-        em.merge(emp);
+        em.merge(tempEmp);
         em.flush();
     }
+    
+    public void createPlevel(){
+        em.persist(pL);
+    }
+    
 }

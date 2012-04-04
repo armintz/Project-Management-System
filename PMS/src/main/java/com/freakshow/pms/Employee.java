@@ -24,6 +24,7 @@ public class Employee implements Serializable {
     private boolean role_HR;
     private boolean role_PM; 
     private boolean role_Supervisor;
+    private String pLevel;
     
     public Employee(){
     }
@@ -102,6 +103,12 @@ public class Employee implements Serializable {
     }
     public void setRole_Supervisor(boolean role_Supervisor) {
         this.role_Supervisor = role_Supervisor;
+    }
+    public String getpLevel() {
+        return pLevel;
+    }
+    public void setpLevel(String pLevel) {
+        this.pLevel = pLevel;
     }
 }
 
