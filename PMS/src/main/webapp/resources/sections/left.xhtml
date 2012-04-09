@@ -14,24 +14,23 @@
 			    <p:menu>  
 			        <p:submenu label="Timesheet" >  
 			        	<p:menuitem value="Edit" url="time_sheet.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        
-			            <p:menuitem value="Sign" url="#" icon="ui-icon-disk"/>  
+			            <p:menuitem value="Sign" url="sign_timesheet.jsf" icon="ui-icon-disk"/>  
 			        </p:submenu>  
 			        <p:submenu label="HR Employee" rendered="#{manageUser.showMenuEmployee()}">  
 			        	<p:menuitem value="Add " url="create_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
 			        	<p:menuitem value="Edit" url="edit_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        
-			            <p:menuitem value="Remove" url="#" icon="ui-icon-close"/>  
+			            <p:menuitem value="Remove" url="remove_emp.jsf" icon="ui-icon-close"/>  
 			            <p:menuitem value="PLevel" url="create_plevel.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
 			        </p:submenu>  
 			        <p:submenu label="Project" rendered="#{manageUser.showMenuProject()}">  
 			        	<p:menuitem value="Create" url="create_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  
 			        	<p:menuitem value="Edit" url="edit_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        			        			
-			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>
-			        	<p:menuitem value="emp_proj" url="emp_project.jsf" icon="ui-icon-arrowrefresh-1-w"/>			        	
+			        	<p:menuitem value="Assign" url="assign_project.jsf" icon="ui-icon-arrowrefresh-1-w"/>			        	
 			        </p:submenu>  
 			        <p:submenu label="Work Package" rendered="#{manageUser.showMenuWP()}">  
 			        	<p:menuitem value="Create" url="create_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>
 			        	<p:menuitem value="Edit" url="edit_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        	
-			        	<p:menuitem value="Assign" url="#" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        		        			        			        	  		        			        
+			        	<p:menuitem value="Assign" url="assign_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        		        			        			        	  		        			        
 			        </p:submenu>  		
 			        <p:submenu label="Report">  
 			        	<p:menuitem value="Create" url="#" icon="ui-icon-arrowrefresh-1-w"/>

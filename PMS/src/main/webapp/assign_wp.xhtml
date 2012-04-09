@@ -18,18 +18,27 @@
                <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                  #{msgs.proj_ID}                 
                   
-                  <p:selectOneMenu value="#{availability.ava.proj_ID}">
-				    <f:selectItems value="#{availability.allProj}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+                  <p:selectOneMenu value="#{wpassign.selectedproject}">
+ 		            <f:selectItem itemLabel="Select Project ID" itemValue="" />  			                 
+				    <f:selectItems value="#{wpassign.getProjects()}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+				    <p:ajax update="selectWP, selectEmp" listener="#{wpassign.handleProjChange(wpassign.selectedproject)}" /> 
+				  </p:selectOneMenu>
+				  work package
+				  <p:selectOneMenu id = "selectWP" value="#{wpassign.wpa.wp_ID}">
+		            <f:selectItem itemLabel="Select WP ID" itemValue="" />  							  
+				    <f:selectItems value="#{wpassign.getWP()}" var="p" itemLabel="#{p}" itemValue="#{p}"/>
 				  </p:selectOneMenu>
 				  employee ID
-			      <p:selectOneMenu value="#{availability.ava.emp_ID}">
-				    <f:selectItems value="#{availability.yourEmps}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+			      <p:selectOneMenu id = "selectEmp" value="#{wpassign.wpa.emp_ID}">
+		                <f:selectItem itemLabel="Select Employee" itemValue="" />  						      
+				    <f:selectItems value="#{wpassign.yourEmps}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
 				  </p:selectOneMenu>
-                                    
-                   <p:commandButton value="assign employee to project" onclick="bar.show()"
-                                   action="#{availability.assign()}" ajax="false"/>
+				  Start Date
+                  <p:calendar id="empWpStartDate" value="#{wpassign.wpa.date_started}" showOn="button" />	                                                     
+                   <p:commandButton value="assign employee to workpackage" onclick="bar.show()"
+                                   action="#{wpassign.assign()}" ajax="false"/>
                    <p:notificationBar position="top" effect="slide" widgetVar="bar" styleClass="top">  
-						<h:outputText value="employee successfully assigned to project" style="color:#FFCC00;font-size:22px;" />  
+						<h:outputText value="employee successfully assigned to workpackage" style="color:#FFCC00;font-size:22px;" />  
 				   </p:notificationBar>  
                                    
                </p:panelGrid>

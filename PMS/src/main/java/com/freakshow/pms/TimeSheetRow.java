@@ -27,7 +27,9 @@ public class TimeSheetRow implements Serializable{
     private int wed;
     private int thurs;
 	private int fri;
-   
+	private boolean signed;
+	private boolean approved;
+    
     public TimeSheetRow(){
 	}
 
@@ -103,4 +105,19 @@ public class TimeSheetRow implements Serializable{
         this.week_end_day = week_end_day;
     }
 
+    public boolean isSigned() {
+        return signed;
+    }
+
+    public void setSigned(boolean signed) {
+        this.signed = signed;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
 }

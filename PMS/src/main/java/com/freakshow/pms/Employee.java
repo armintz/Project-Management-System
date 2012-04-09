@@ -17,6 +17,7 @@ public class Employee implements Serializable {
     private String first_name;
     private String last_name;
     private Date emp_start_date;
+    private Date emp_end_date;
     private String ft_pt;
     private int supervisor_ID;
     private int ts_approver_ID;
@@ -62,6 +63,14 @@ public class Employee implements Serializable {
     public void setEmp_start_date(Date emp_start_date) {
         this.emp_start_date = emp_start_date;
     }
+    public Date getEmp_end_date() {
+        return emp_end_date;
+    }
+
+    public void setEmp_end_date(Date emp_end_date) {
+        this.emp_end_date = emp_end_date;
+    }
+
     public String getFt_pt() {
         return ft_pt;
     }

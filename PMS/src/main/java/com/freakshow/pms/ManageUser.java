@@ -1,13 +1,11 @@
 package com.freakshow.pms;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +23,8 @@ public class ManageUser implements Serializable {
     Employee emp = new Employee();
     Employee tempEmp = new Employee();
     Plevel pL = new Plevel();
-    
+    Date end_date;
+
     List<Integer> availableEmp;
     
     public Employee getEmp() {
@@ -50,6 +49,14 @@ public class ManageUser implements Serializable {
 
     public void setpL(Plevel pL) {
         this.pL = pL;
+    }
+    
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
     
     public String verifyUser(){
@@ -95,6 +102,14 @@ public class ManageUser implements Serializable {
         return "edit_emp_details";
     }
     
+    public String removeEmp(int selectedEmpID) {
+        tempEmp = em.find(Employee.class, selectedEmpID);
+        tempEmp.setEmp_end_date(end_date);
+        em.merge(tempEmp);
+        em.flush();
+        return "remove_emp";
+    }    
+    
     public void updateEmp() {
         em.merge(tempEmp);
         em.flush();
@@ -103,5 +118,5 @@ public class ManageUser implements Serializable {
     public void createPlevel(){
         em.persist(pL);
     }
-    
+        
 }

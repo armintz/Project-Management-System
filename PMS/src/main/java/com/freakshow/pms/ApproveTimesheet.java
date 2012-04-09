@@ -82,8 +82,7 @@ public class ApproveTimesheet implements Serializable  {
     
     public List<Date> getWeekEndDates() {
         try{
-            TypedQuery<Date> q = em.createQuery("SELECT DISTINCT week_end_day FROM TimeSheet WHERE approved = :apr", Date.class);
-            q.setParameter("apr", false);   
+            TypedQuery<Date> q = em.createQuery("SELECT DISTINCT week_end_day FROM TimeSheet", Date.class);
             weekEndDates =  q.getResultList();             
         }
         catch(Exception ex)
@@ -128,22 +127,20 @@ public class ApproveTimesheet implements Serializable  {
     }
      
     public String approveTS(){
-        TypedQuery<TimeSheetRow> q = em.createQuery("SELECT t FROM TimeSheetRow t WHERE t.week_end_day = :wEnd AND t.emp_ID = :empID", TimeSheetRow.class); 
+        TypedQuery<TimeSheetRow> q = em.createQuery("SELECT t FROM TimeSheetRow t WHERE t.week_end_day = :wEnd AND t.emp_ID = :empID And signed = :sgnd", TimeSheetRow.class); 
         q.setParameter("wEnd", chosenDate, TemporalType.DATE);
-        q.setParameter("empID", chosenEmpID);        
+        q.setParameter("empID", chosenEmpID);  
+        q.setParameter("sgnd", true);  
         tsRow = q.getResultList();   
         return "timesheet_approve";   
     }
-    public void updateTs(){
+    public void apprTs(){
         
-//        for (TimeSheetRow t : ts.getTsRow())
-//        {          
-//              t.setWeek_end_day(ts.getWeek_end_day());
-//              t.setEmp_ID(usr.getEmp().getEmp_ID());
-//        }        
-//        
-        
-        em.merge(tsRow);
-        em.flush();
+        for (TimeSheetRow t : tsRow)
+        {          
+              t.setApproved(true);  
+              em.merge(t);
+              em.flush();
+        } 
     }
 }

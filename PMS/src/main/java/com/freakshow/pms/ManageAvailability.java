@@ -15,20 +15,24 @@ import javax.persistence.TypedQuery;
 @SessionScoped
 @Stateful
 public class ManageAvailability implements Serializable{
-    Availability ava = new Availability();
+
+
     @PersistenceContext
     private EntityManager em;
+    
+    public Availability ava = new Availability();
     List<Integer> yourEmps;
     List<Integer> allProj;
     @Inject
     private ManageUser emp;
     
-    public final Availability getAva(){
+    public Availability getAva() {
         return ava;
     }
-    public final void setAva(Availability a){
-        ava = a;
+    public void setAva(Availability ava) {
+        this.ava = ava;
     }
+    
     public List<Integer> getYourEmps(){
         TypedQuery<Integer> q = em.createQuery("SELECT emp_ID FROM Employee "
             + "WHERE supervisor_ID = :sup", Integer.class);
@@ -36,7 +40,7 @@ public class ManageAvailability implements Serializable{
         yourEmps = (List<Integer>) q.getResultList();
         return yourEmps;
     }
-    public final void setYourEmps(List<Integer> e){
+    public void setYourEmps(List<Integer> e){
         yourEmps = e;
     }
     public List<Integer> getAllProj(){
@@ -44,26 +48,25 @@ public class ManageAvailability implements Serializable{
         allProj = (List<Integer>) q.getResultList();
         return allProj;
     }
-    public final void setAllProj(List<Integer> e){
+    public void setAllProj(List<Integer> e){
         allProj = e;
     }
-    /**
-     * retrieves the current users employee object.
-     * @return an employee object for the current user.
-     */
-    public final ManageUser getEmp() {
+
+    public ManageUser getEmp() {
         return emp;
     }
-    /**
-     * sets the employee object.
-     * @param e the new value to be assigned to emp.
-     */
+
     public final void setEmp(final ManageUser e) {
         emp = e;
     }
-    public final String assign(){
-        em.persist("ava");
-        return "emp_project";
+    public String assign(){   
+        try{
+            em.persist(ava);
+        }
+        catch(Exception ex){
+            System.out.println("problem with persisting avalibility" + ex);
+        }
+        return "assign_project";
     }
     
 }

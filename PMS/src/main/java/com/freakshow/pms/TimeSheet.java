@@ -22,12 +22,11 @@ public class TimeSheet implements Serializable {
     private int emp_ID;
     @Id
     private Date week_end_day;
-    private Boolean approved;
     
     @OneToMany(cascade = CascadeType.ALL)
     public Collection<TimeSheetRow> tsRows;
-   
-    public TimeSheet(){
+        
+    public TimeSheet(){ 
         tsRows = new ArrayList<TimeSheetRow>(Arrays.asList(
                 new TimeSheetRow()
                 ));
@@ -47,14 +46,6 @@ public class TimeSheet implements Serializable {
 
     public void setWeek_end_day(Date week_end_day) {
         this.week_end_day = week_end_day;
-    }
-
-    public Boolean getApproved() {
-        return approved;
-    }
-
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
     }
 
     public Collection<TimeSheetRow> getTsRows() {          
