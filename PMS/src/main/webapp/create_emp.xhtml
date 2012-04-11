@@ -45,13 +45,19 @@
                   <p:inputText id="supID" value="#{manageUser.tempEmp.supervisor_ID}"/>
                  #{msgs.ts_approver_id}
                   <p:inputText id="apprvrID" value="#{manageUser.tempEmp.ts_approver_ID}"/>                                   
-                  Create Work Package
-                  <p:selectBooleanCheckbox id="Role_WP" value="#{manageUser.tempEmp.role_create_WP}" />
-                  Human Resources
+                  
+                  #{msgs.hr}
                   <p:selectBooleanCheckbox id="Role_HR" value="#{manageUser.tempEmp.role_HR}" />                  
-                  Project Manager
-                  <p:selectBooleanCheckbox id="Role_PM" value="#{manageUser.tempEmp.role_Supervisor}" />
+                  
+                  #{msgs.pc}
+                  <p:selectBooleanCheckbox id="Role_PC" value="#{manageUser.tempEmp.role_create_Proj}" />                  
+                  
+                  #{msgs.pm}
+                  <p:selectBooleanCheckbox id="Role_PM" value="#{manageUser.tempEmp.role_PM}" />
                                     
+                  #{msgs.sup}
+                  <p:selectBooleanCheckbox id="Role_Supervisor" value="#{manageUser.tempEmp.role_Supervisor}" />
+                  
                    <p:messages id="messages" showDetail="true" autoUpdate="true"/>                   
                    <p:commandButton value="#{msgs.btnCreate}" onclick="bar.show()"
                                    action="#{manageUser.createUser()}"/>

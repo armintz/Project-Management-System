@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+		  	<p:panel header="Project Budget Matrix">            
+		            	<p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		                 Project Name:
+		                  <h:outputText id="pName" value="#{manageReport.projName}"/>                                  	                                  
+		                 Project Number:
+		                  <h:outputText id="pNum" value="#{manageReport.projID}"/>   
+		                 Project Manager:
+		                  <h:outputText id="pm" value="#{manageReport.projectManager}"/>   		                  
+			  		   	</p:panelGrid>   	
+		  		   	</p:panel>
+    				<p:dataTable id="dta" value="#{reportRow.wp_ID}" var="rrs" style="position:absolute" >
+		     			<p:column>
+		    				<f:facet name="header">WP ID</f:facet>
+		     				<h:outputText id= "wpID" value="#{rrs}" size ='4'/>
+		    			</p:column> 		    			    					  		   		
+		  		   	</p:dataTable>  	
+    				<p:dataTable id="dt" value="#{reportRow.actualHrs}" var="a" style="position:absolute; left:300px;" >
+		     			<p:column>
+		    				<f:facet name="header">Actual Hours Spent On Project:</f:facet>
+		     				<h:outputText id= "wpID" value="#{a}" size ='4'/>
+		    			</p:column> 		    			    					  		   		
+		  		   	</p:dataTable> 		  		   		                
+				
+				<p:barChart id="basic" value="#{manageReport.categoryModel}" legendPosition="ne"  
+           			 title="Basic Bar Chart" min="0" max="200" style="height:300px; top:100px"/>			     			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

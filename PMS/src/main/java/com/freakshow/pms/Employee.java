@@ -21,10 +21,10 @@ public class Employee implements Serializable {
     private String ft_pt;
     private int supervisor_ID;
     private int ts_approver_ID;
-    private boolean role_create_WP;
     private boolean role_HR;
     private boolean role_PM; 
     private boolean role_Supervisor;
+    private boolean role_create_Proj;
     private String pLevel;
     
     public Employee(){
@@ -89,12 +89,6 @@ public class Employee implements Serializable {
     public void setTs_approver_ID(int ts_approver_ID) {
         this.ts_approver_ID = ts_approver_ID;
     }
-    public boolean isRole_create_WP() {
-        return role_create_WP;
-    }
-    public void setRole_create_WP(boolean role_create_WP) {
-        this.role_create_WP = role_create_WP;
-    }
     public boolean isRole_HR() {
         return role_HR;
     }
@@ -118,6 +112,14 @@ public class Employee implements Serializable {
     }
     public void setpLevel(String pLevel) {
         this.pLevel = pLevel;
+    }
+
+    public boolean isRole_create_Proj() {
+        return role_create_Proj;
+    }
+
+    public void setRole_create_Proj(boolean role_create_Proj) {
+        this.role_create_Proj = role_create_Proj;
     }
 }
 

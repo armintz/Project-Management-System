@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui" >
+   <head><title>Software Management System</title></head>
+   <body>
+      <ui:composition template="/resources/templates/default.xhtml">
+         <ui:define name="heading">       
+            <ui:include src="/resources/sections/header.xhtml"/>
+         </ui:define>
+
+         <ui:define name="content">
+           <h:form>
+           	<p:panel header="Status Report">            
+            	<p:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+                 Report #:
+                  <h:outputText id="reportNum" value="1"/>   
+	             Report Date:
+                  <h:outputText id="reportDate" value="#{manageStatus.statusDate}"  />  
+                  Week #:
+                  <h:outputText id="weekNum" value="#{manageStatus.weekNum}"/>	                 
+                 Project #:   
+                  <h:outputText id="prjNum" value="#{manageStatus.curproj}"/>	
+               	 Work Package #:   
+                  <h:outputText id="wpNum" value="#{manageStatus.wpID}"/>	                                                               	
+                 Work Package Name:
+                  <h:outputText id="wpName" value="#{manageStatus.wpName}" />
+                 Responsbile Engineer:
+                  <h:outputText id="re" value="#{manageStatus.emp.emp.emp_ID}" />	                 
+                 Project Manager:
+                  <h:outputText id="pm" value="#{manageStatus.pmID}"/>
+                 Total Hours:   
+                  <h:outputText id="totalHrs" value="#{manageStatus.totalHrs}"/>                                 	                                  
+               </p:panelGrid>
+
+            	<p:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">	
+            		Work Accomplished This Period:  		   	
+	  		   		<p:inputTextarea id="c1" value="#{manageStatus.workAccomplished}" rows="5" cols="30"/>  
+	  		   		Work Planned Next Period:
+	  		   		<p:inputTextarea id="c2" value="#{manageStatus.workPlanned}" rows="5" cols="30"/>  
+	  		   		Problems This Period:
+	  		   		<p:inputTextarea id="c3" value="#{manageStatus.problemsAnticipated}" rows="5" cols="30"/>  
+	  		   		Work Planned Next Period:
+	  		   		<p:inputTextarea id="c4" value="#{manageStatus.problemPeriod}" rows="5" cols="30"/>  
+	  		   		Comments:
+	  		   		<p:inputTextarea id="c5" value="#{manageStatus.comments}" rows="5" cols="30"/>   	  		   		 	
+	  		   	</p:panelGrid>   	
+  		   	</p:panel>  		     			                          
+           </h:form>       
+			<p:dock>  
+			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   
+			    <p:menuitem value="Logout" icon="/resources/gfx/logout.png" url="login.jsf"/>  
+			</p:dock>              
+         </ui:define>
+		<script type="text/javascript">  
+		    function fadein(input, container) {  
+		        container.fadeIn("slow");  
+		    }  
+		  
+		    function fadeout(input, container) {  
+		        container.fadeOut("slow");  
+		    }  
+		</script> 
+		<ui:define name="footer">
+            <ui:include src="/resources/sections/footer.xhtml"/>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

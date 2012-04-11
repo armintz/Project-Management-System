@@ -23,7 +23,13 @@
                	 #{msgs.startdate}   
                   <p:calendar id="projStartDate" value="#{manageProj.proj.start_date}" showOn="button" />	                 
                  #{msgs.pm}
-                  <p:inputText id="pm" value="#{manageProj.proj.project_manager}"/>
+                   <p:selectOneMenu value="#{manageProj.proj.project_manager}">
+				    <f:selectItems value="#{manageProj.availablePM}" var="p" itemLabel="#{p.toString()}" itemValue="#{p}"/>
+				</p:selectOneMenu>
+				#{msgs.proj_budget}
+                  <p:inputText id="projBudget" value="#{manageProj.proj.project_budget}"/>
+				    
+
                  #{msgs.active}
                   <p:selectOneMenu id="proj_active" value="#{manageProj.proj.active}">  
 			            <f:selectItem itemLabel="True" itemValue="True" />  

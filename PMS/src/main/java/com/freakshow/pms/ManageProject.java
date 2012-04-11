@@ -25,13 +25,47 @@ public class ManageProject implements Serializable {
     ManageUser emp;   
 
     int projNo;
-    String wpNo = null;
+    String wpNo;
     Project proj = new Project();
     WorkPackage wp = new WorkPackage();
     Estimate est = new Estimate();
     List<Integer> availableProj;
     List<String> availableWP;
     List<String> reWP;    
+    List<Integer> availablePM;
+    private int curproj;
+    public List<String> wpIDs;
+    public List<Integer> projs;
+    
+    public int getProjNo() {
+        return projNo;
+    }
+
+    public void setProjNo(int projNo) {
+        this.projNo = projNo;
+    }
+    public String getWpNo() {
+        return wpNo;
+    }
+
+    public void setWpNo(String wpNo) {
+        this.wpNo = wpNo;
+    }
+    public int getCurproj() {
+        return curproj;
+    }
+
+    public void setCurproj(int curproj) {
+        this.curproj = curproj;
+    }
+    
+    public List<String> getWpIDs() {
+        return wpIDs;
+    }
+
+    public void setWpIDs(List<String> wpIDs) {
+        this.wpIDs = wpIDs;
+    }    
     
     public Estimate getEst() {
         return est;
@@ -66,7 +100,18 @@ public class ManageProject implements Serializable {
 
     public void setWp(WorkPackage wp) {
         this.wp = wp;
-    }    
+    }   
+ 
+    public List<Integer> getProjs() {
+        TypedQuery<Integer> q = em.createQuery("SELECT DISTINCT proj_ID FROM WorkPackage", Integer.class);
+        List<Integer> rwp =  (List<Integer>)q.getResultList();        
+        return rwp;
+    }
+
+    public void setProjs(List<Integer> projs) {
+        this.projs = projs;
+    }  
+    
     
     public List<String> getAvailableWP() { 
           TypedQuery<String> q = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE proj_ID = :proj", String.class);
@@ -101,6 +146,16 @@ public class ManageProject implements Serializable {
     }
  
 
+    public List<Integer> getAvailablePM() {     
+        TypedQuery<Integer> q = em.createQuery("SELECT emp_ID FROM Employee WHERE role_PM = 1", Integer.class);
+        List<Integer> emp =  (List<Integer>)q.getResultList();      
+        return emp;
+    }
+
+    public void setAvailablePM(List<Integer> availablePM) {       
+        this.availablePM = availablePM;
+    }
+    
     public void handleProjChange(int proj) {  
         projNo = proj;
     } 
@@ -144,4 +199,13 @@ public class ManageProject implements Serializable {
     public void createWP() {
         em.persist(wp);      
     }
+    
+    public void handleChange(){      
+        TypedQuery<String> w = em.createQuery("SELECT wp_ID FROM WorkPackage WHERE proj_ID = :proj", String.class); 
+        w.setParameter("proj", projNo);
+        wpIDs = w.getResultList();       
+        if(wpIDs == null){
+            System.out.println("error");
+        }           
+    }    
 }

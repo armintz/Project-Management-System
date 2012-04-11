@@ -51,12 +51,15 @@
     			<p:column>
     				<f:facet name="header">Friday</f:facet>
       				<p:inputText id= "fri" value="#{o.fri}" size ='7'/>
-    			</p:column>  	
+    			</p:column>  
+     			<p:column>
+            		<p:commandButton value="Remove" update="tsDataTable" action="#{manageTimesheet.removeRow(o)}" />   		                                   			                                             	 
+    			</p:column>    				
 			</p:dataTable> 	
 
             <p:commandButton value="Save" action="#{manageTimesheet.saveTs()}" style="position:absolute; top:600px; left:280px" />
             <p:commandButton value="Add" update="tsDataTable" action="#{manageTimesheet.addRow}" style="position:absolute; top:600px; left:220px"  />   		                                   			                                             	 
-            <p:commandButton value="load" update="tsDataTable" action="#{manageTimesheet.loadEx}" style="position:absolute; top:600px; left:340px"  />   		                                   			                                             	 
+            <p:commandButton value="Load" update="tsDataTable" action="#{manageTimesheet.loadEx}" style="position:absolute; top:600px; left:340px"  />   	 	                                   			                                             	 
             
             </h:form>   		
 			<p:dock>  

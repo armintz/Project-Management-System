@@ -20,6 +20,7 @@ public class WorkPackage {
     private Date start_date;
     private int responsible_engineer;
     private String Description;
+    private int wp_budget;
     
     public String getWp_ID() {
         return wp_ID;
@@ -56,6 +57,12 @@ public class WorkPackage {
     }
     public void setDescription(String description) {
         Description = description;
+    }
+    public int getWp_budget() {
+        return wp_budget;
+    }
+    public void setWp_budget(int wp_budget) {
+        this.wp_budget = wp_budget;
     }
     
 }

@@ -14,26 +14,22 @@
 
          <ui:define name="content">
            <h:form>
-                            
            	<p:panel header="Create a Status Report">            
                <p:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-				 	<p:selectOneMenu value="#{manageProj.projNo}" >
+				 	<p:selectOneMenu value="#{manageStatus.curproj}" >
 		                <f:selectItem itemLabel="Select Project ID" itemValue="" />  							 	
-				    	<f:selectItems value="#{manageProj.projs}" var="r" itemLabel="#{r.toString()}" itemValue="#{r}"/>
-						<p:ajax update="selectWP" listener="#{manageProj.handleChange()}" /> 					    
+				    	<f:selectItems value="#{manageStatus.projs}" var="r" itemLabel="#{r.toString()}" itemValue="#{r}"/>
+						<p:ajax update="selectWP" listener="#{manageStatus.handleChange()}" /> 					    
 					</p:selectOneMenu>   
 					 
-					<p:selectOneMenu id="selectWP" value="#{manageProj.wpNo}">
+					<p:selectOneMenu id="selectWP" value="#{manageStatus.wpID}">
 		                <f:selectItem itemLabel="Select WP ID" itemValue="" />  			
-					    <f:selectItems value="#{manageProj.wpIDs}" var="e" itemLabel="#{e}" itemValue="#{e}"/>
+					    <f:selectItems value="#{manageStatus.wpIDs}" var="e" itemLabel="#{e}" itemValue="#{e}"/>
 					</p:selectOneMenu> 					    
-   			             
+                   <p:commandButton value="Create a status report" 
+                                   action="#{manageStatus.createReport()}" ajax="false"/>				             
                </p:panelGrid>
-  		 	</p:panel>
-
-	        <p:commandButton value="Edit Work Package" style="position:absolute; top:360px; left:220px"
-                            action="#{manageProj.editWP()}" ajax="false"/>                                  
-               			                          
+  		 	</p:panel>      		     			                          
            </h:form>       
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   

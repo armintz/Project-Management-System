@@ -2,7 +2,6 @@ package com.freakshow.pms;
 
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,6 +17,7 @@ public class Project {
     private boolean active;
     private Date start_date;
     private int project_manager;
+    private int project_budget;
     
     @OneToMany
     public Collection<WorkPackage> wp;
@@ -57,5 +57,11 @@ public class Project {
     }
     public void setWp(Collection<WorkPackage> wp) {
         this.wp = wp;
+    }
+    public int getProject_budget() {
+        return project_budget;
+    }
+    public void setProject_budget(int project_budget) {
+        this.project_budget = project_budget;
     }
 }

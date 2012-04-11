@@ -21,6 +21,7 @@ public class ManageUser implements Serializable {
     @PersistenceContext
     protected EntityManager em;
     Employee emp = new Employee();
+
     Employee tempEmp = new Employee();
     Plevel pL = new Plevel();
     Date end_date;
@@ -70,7 +71,7 @@ public class ManageUser implements Serializable {
         catch(Exception ex){
             System.out.println("No employee in record.");
         }
-        return "create_emp";
+        return "login";
     }   
     
     public void createUser() {
@@ -80,12 +81,18 @@ public class ManageUser implements Serializable {
     public boolean showMenuEmployee(){     
         return emp.isRole_HR();
     }    
-    public boolean showMenuWP(){     
-        return emp.isRole_create_WP();
-    }
+    
     public boolean showMenuProject(){     
-        return emp.isRole_Supervisor();
+        return emp.isRole_PM();
     }   
+    
+    public boolean showMenuSupervisor(){     
+        return emp.isRole_Supervisor();
+    }
+    
+    public boolean showMenuCreateProject(){     
+        return emp.isRole_create_Proj();
+    }
     
     public List<Integer> getAvailableEmp() {     
         TypedQuery<Integer> q = em.createQuery("SELECT emp_ID FROM Employee", Integer.class);
@@ -118,5 +125,14 @@ public class ManageUser implements Serializable {
     public void createPlevel(){
         em.persist(pL);
     }
-        
+       
+    public boolean showMenuRe(){
+        TypedQuery<WorkPackage> q = em.createQuery("SELECT w FROM WorkPackage w WHERE w.responsible_engineer = :re", WorkPackage.class);
+        q.setParameter("re", emp.getEmp_ID());
+        if(q.getResultList() != null){
+            return true;
+        }
+        else
+            return false;                    
+    }
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -43,14 +44,13 @@
     			<p:column>
     				<f:facet name="header">Friday</f:facet>
       				<h:outputText id= "afri" value="#{t.fri}" size ='7'/>
-    			</p:column>  
+    			</p:column> 
+      			<f:facet name="footer"><p:captcha label="Captcha" theme="white"/>  
+      						    <p:commandButton value="Sign" ajax="false"  
+                actionListener="#{signTs.signTs}" /><p:messages showDetail="true"/>  			  			    
+                </f:facet>   				
+
 			</p:dataTable> 		
-			
-			    <p:captcha label="Captcha"/>  	  
-			    <p:messages showDetail="true"/>  			  			    
-			    <p:commandButton value="Check" ajax="false"  
-                actionListener="#{signTs.signTs}" style="position:absolute; top:600px; left:220px"/>	
-                		 
             </h:form>   		
 			<p:dock>  
 			    <p:menuitem value="Home" icon="/resources/gfx/home.png" url="employee.jsf"/>   

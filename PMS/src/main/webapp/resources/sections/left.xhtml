@@ -16,26 +16,32 @@
 			        	<p:menuitem value="Edit" url="time_sheet.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        
 			            <p:menuitem value="Sign" url="sign_timesheet.jsf" icon="ui-icon-disk"/>  
 			        </p:submenu>  
-			        <p:submenu label="HR Employee" rendered="#{manageUser.showMenuEmployee()}">  
+			        <p:submenu label="HR Administration" rendered="#{manageUser.showMenuEmployee()}">  
 			        	<p:menuitem value="Add " url="create_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
 			        	<p:menuitem value="Edit" url="edit_emp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        
 			            <p:menuitem value="Remove" url="remove_emp.jsf" icon="ui-icon-close"/>  
 			            <p:menuitem value="PLevel" url="create_plevel.jsf" icon="ui-icon-arrowrefresh-1-w"/>  	
 			        </p:submenu>  
-			        <p:submenu label="Project" rendered="#{manageUser.showMenuProject()}">  
+			        
+			        <p:submenu label="Project Creation" rendered="#{manageUser.showMenuCreateProject()}">  
 			        	<p:menuitem value="Create" url="create_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  
 			        	<p:menuitem value="Edit" url="edit_proj.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        			        			
-			        	<p:menuitem value="Assign" url="assign_project.jsf" icon="ui-icon-arrowrefresh-1-w"/>			        	
 			        </p:submenu>  
-			        <p:submenu label="Work Package" rendered="#{manageUser.showMenuWP()}">  
-			        	<p:menuitem value="Create" url="create_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>
-			        	<p:menuitem value="Edit" url="edit_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        	
-			        	<p:menuitem value="Assign" url="assign_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        		        			        			        	  		        			        
-			        </p:submenu>  		
-			        <p:submenu label="Report">  
-			        	<p:menuitem value="Create" url="#" icon="ui-icon-arrowrefresh-1-w"/>
-			        	<p:menuitem value="View" url="#" icon="ui-icon-arrowrefresh-1-w"/>			        	  		        			        		        		        			        			        	  		        			        			        	        			        
-			        </p:submenu>  			        			        	        
+			        
+			        <p:submenu label="Project Management" rendered="#{manageUser.showMenuProject()}">  
+			        	<p:menuitem value="Create WP" url="create_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>
+			        	<p:menuitem value="Edit WP" url="edit_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  		        			        		        	
+			        	<p:menuitem value="Assign" url="assign_wp.jsf" icon="ui-icon-arrowrefresh-1-w"/>  
+			        	<p:menuitem value="Monthly Report" url="report_view.jsf" icon="ui-icon-arrowrefresh-1-w"/>			        	  		        			        		        		        			        			        	  		        			        			        	        			        			        			        			        		        		        			        			        	  		        			        
+			        </p:submenu>  
+			        
+		        	<p:submenu label="Supervisor" rendered="#{manageUser.showMenuSupervisor()}">  
+			        	<p:menuitem value="Emp Availability" url="assign_project.jsf" icon="ui-icon-arrowrefresh-1-w"/>			        	
+		        	</p:submenu>  	
+		        	
+			        <p:submenu label="Status Report" rendered="#{manageUser.showMenuRe()}">  
+			        	<p:menuitem value="Create" url="report_create.jsf" icon="ui-icon-arrowrefresh-1-w"/>
+			        </p:submenu>  	 			        			        	        
 			    </p:menu>   
 		</div>             
       </ui:composition>
